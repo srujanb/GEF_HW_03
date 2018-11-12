@@ -6,7 +6,7 @@ import Utils.ObjectUtil;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-public class InputHandler extends Thread {
+public class InputHandler implements Runnable {
 
     private final Client client;
     private DataInputStream dIn;
@@ -21,8 +21,8 @@ public class InputHandler extends Thread {
         }
     }
 
-    public void run(){
-        super.run();
+    @Override
+    public void run() {
         if (dIn != null){
             listenToInputs();
         }
@@ -43,5 +43,4 @@ public class InputHandler extends Thread {
             }
         }
     }
-
 }

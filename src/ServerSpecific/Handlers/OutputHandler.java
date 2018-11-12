@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.Socket;
 
-public class OutputHandler extends Thread{
+public class OutputHandler implements Runnable{
 
     private final Client client;
     private DataOutputStream dOut;
@@ -23,6 +23,8 @@ public class OutputHandler extends Thread{
         }
     }
 
+    @Override
+    public void run() { }
 
     public void sendObject(Object object) throws IOException {
         if (null == dOut){

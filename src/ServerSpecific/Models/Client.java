@@ -20,6 +20,7 @@ public class Client extends GameObject{
     public void setSocket(Socket socket) {
         this.socket = socket;
         clientHandler = new ClientHandler(this);
+        (new Thread(clientHandler)).start();
     }
 
     public void sendObject(Object object) throws IOException {

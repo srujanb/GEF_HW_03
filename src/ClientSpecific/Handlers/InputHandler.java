@@ -4,7 +4,7 @@ import Utils.ObjectUtil;
 
 import java.io.DataInputStream;
 
-public class InputHandler extends Thread {
+public class InputHandler implements Runnable {
 
     private final DataInputStream dIn;
 
@@ -12,7 +12,8 @@ public class InputHandler extends Thread {
         this.dIn = dIn;
     }
 
-    public void run(){
+    @Override
+    public void run() {
         listenToInputs();
     }
 

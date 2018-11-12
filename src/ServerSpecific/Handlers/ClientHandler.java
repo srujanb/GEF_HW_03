@@ -8,7 +8,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class ClientHandler extends Thread {
+public class ClientHandler implements Runnable {
 
     private final Client client;
     private InputHandler inputHandler;
@@ -16,6 +16,10 @@ public class ClientHandler extends Thread {
 
     public ClientHandler(Client client) {
         this.client = client;
+    }
+
+    @Override
+    public void run() {
         try {
             init();
         } catch (IOException e) {
@@ -25,14 +29,11 @@ public class ClientHandler extends Thread {
 
     private void init() throws IOException {
         outputHandler = new OutputHandler(client);
-        outputHandler.start();
+        (new Thread(outputHandler)).start();
         inputHandler = new InputHandler(client);
-        inputHandler.start();
+        (new Thread(inputHandler)).start();
     }
 
-    public void run() {
-        super.run();
-    }
 
     public void sendObject(Object object) throws IOException {
         outputHandler.sendObject(object);

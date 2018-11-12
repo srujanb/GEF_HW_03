@@ -25,8 +25,8 @@ public class ClientMain {
             e.printStackTrace();
             return;
         }
-        outputHandler.start();
-        inputHandler.start();
+        (new Thread(outputHandler)).start();
+        (new Thread(inputHandler)).start();
 
     }
 

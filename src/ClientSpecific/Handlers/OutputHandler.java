@@ -6,7 +6,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 
-public class OutputHandler extends Thread {
+public class OutputHandler implements Runnable {
 
     private final DataOutputStream dOut;
 
@@ -14,8 +14,8 @@ public class OutputHandler extends Thread {
         this.dOut = dOut;
     }
 
-    public void run(){
-        super.run();
+    @Override
+    public void run() {
         sendMessageAtIntervals();
     }
 
