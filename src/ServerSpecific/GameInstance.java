@@ -31,7 +31,8 @@ public class GameInstance extends GameObject implements Runnable{
                 try {
                     client.sendObject("<Message from server>");
                     Thread.sleep(1000);
-                } catch (IOException | InterruptedException e) {
+                } catch (IOException | InterruptedException | NullPointerException e) {
+                    System.out.println("ERROR sending message to client");
                     e.printStackTrace();
                 }
             }
@@ -49,6 +50,7 @@ public class GameInstance extends GameObject implements Runnable{
 
     public void addClient(Client client){
         clients.put(client.getGUID(),client);
+
     }
 
     public void removeClient(long GUID){
