@@ -18,6 +18,11 @@ public class GameInstance extends GameObject implements Runnable{
         System.out.println("GameInstance started with GUID: " + GUID);
     }
 
+    @Override
+    public void run() {
+        GameLoop();
+    }
+
     private void GameLoop(){
         ArrayList<Client> clientsList;
         while (true) {
@@ -46,8 +51,11 @@ public class GameInstance extends GameObject implements Runnable{
         clients.put(client.getGUID(),client);
     }
 
-    @Override
-    public void run() {
-        GameLoop();
+    public void removeClient(long GUID){
+        clients.remove(GUID);
+    }
+
+    public void removeClient(Client client){
+        removeClient(client.getGUID());
     }
 }
