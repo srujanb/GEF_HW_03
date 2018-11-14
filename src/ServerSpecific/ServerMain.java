@@ -31,6 +31,11 @@ public class ServerMain {
                 Socket socket = serverSocket.accept();
                 Client client = new Client();
                 client.setSocket(socket);
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 gameInstance.addClient(client);
 
             } catch (IOException e) {

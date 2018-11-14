@@ -2,13 +2,16 @@ package ClientSpecific;
 
 import ClientSpecific.Handlers.InputHandler;
 import ClientSpecific.Handlers.OutputHandler;
+import ClientSpecific.Managers.GameStateManager;
 import Models.GameState;
+import Models.Platform;
 import processing.core.PApplet;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ClientMain extends PApplet {
 
@@ -16,7 +19,7 @@ public class ClientMain extends PApplet {
     private static final int PORT = 9754;
     private static OutputHandler outputHandler;
     private static InputHandler inputHandler;
-    private static final GameState gameState = new GameState();
+    private static GameStateManager gameStateManager;
     private static PApplet pApplet;
 
     public static void main(String args[]){
@@ -48,10 +51,20 @@ public class ClientMain extends PApplet {
         DataInputStream dIn = new DataInputStream(socket.getInputStream());
         outputHandler = new OutputHandler(dOut);
         inputHandler = new InputHandler(dIn);
+
+        gameStateManager = new GameStateManager(pApplet);
     }
 
     @Override
     public void draw() {
-        rect(00,00,40,30);
+        try {
+            GameState gameState = gameStateManager.getCurrentGameState();
+            ArrayList<Platform> platforms = gameState.getPlatforms();
+            for (Platform platform : platforms) {
+                platform.draw();
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
