@@ -2,6 +2,7 @@ package ServerSpecific;
 
 import Models.GameObject;
 import Models.GameState;
+import Models.Platform;
 import ServerSpecific.Managers.GameStateManager;
 import ServerSpecific.Models.Client;
 import processing.core.PApplet;
@@ -26,10 +27,30 @@ public class GameInstance extends GameObject implements Runnable {
 
     private void generateInitialGameState() {
         GameState gameState = new GameState();
-        gameState.initPlatforms();
+        initPlatforms(gameState);
         gameStateManager = new GameStateManager(currentPappletInstance);
         gameStateManager.setCurrentGameState(gameState);
         System.out.println("GameInstance started with GUID: " + GUID);
+    }
+
+    private void initPlatforms(GameState gameState) {
+            ArrayList<Platform> platforms = new ArrayList<>();
+
+            Platform platform;
+
+            platform = new Platform(null, 50,50,50,20);
+            platform.setClr(0,255,0);
+            platforms.add(platform);
+
+            platform = new Platform(null, 50,100,50,20);
+            platform.setClr(0,255,0);
+            platforms.add(platform);
+
+            platform = new Platform(null, 50,150,50,20);
+            platform.setClr(0,255,0);
+            platforms.add(platform);
+
+            gameState.setPlatforms(platforms);
     }
 
     @Override
