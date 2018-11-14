@@ -35,7 +35,15 @@ public class GameStateManager {
         GameStateManager.currentGameState = currentGameState;
     }
 
-    public void drawCurrentState() {
+    public static PApplet getpApplet() {
+        return pApplet;
+    }
+
+    public static void setpApplet(PApplet pApplet) {
+        GameStateManager.pApplet = pApplet;
+    }
+
+    public static void drawCurrentState() {
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
         for (Platform platform : platforms) {
             platform.draw();

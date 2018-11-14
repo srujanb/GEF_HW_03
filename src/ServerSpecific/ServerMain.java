@@ -14,8 +14,6 @@ public class ServerMain extends PApplet{
     private static ServerSocket serverSocket;
     private static GameInstance gameInstance;
     private static PApplet currentPappletInstance;
-    private static GameStateManager gameStateManager;
-
     private static Boolean serverStillOn = true;
 
     public static void main(String args[]){
@@ -50,7 +48,7 @@ public class ServerMain extends PApplet{
     }
 
     private static void initServer() throws IOException {
-        gameStateManager = new GameStateManager(currentPappletInstance);
+        GameStateManager.setpApplet(currentPappletInstance);
         serverSocket = new ServerSocket(PORT);
         gameInstance = new GameInstance();
         (new Thread(gameInstance)).start();
@@ -66,7 +64,7 @@ public class ServerMain extends PApplet{
     @Override
     public void draw() {
         try {
-            gameStateManager.drawCurrentState();
+            GameStateManager.drawCurrentState();
         } catch (Exception e){
             e.printStackTrace();
         }
