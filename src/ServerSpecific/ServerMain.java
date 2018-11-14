@@ -59,7 +59,6 @@ public class ServerMain extends PApplet{
         currentPappletInstance = this;
     }
 
-
     @Override
     public void draw() {
         try {
@@ -67,11 +66,5 @@ public class ServerMain extends PApplet{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-//        System.out.println("ServerMain draw");
-//        try {
-//            gameInstance.drawCurrentState();
-//        } catch (Exception e){
-//            e.printStackTrace();
-//        }
     }
 }
