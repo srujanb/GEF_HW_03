@@ -11,7 +11,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
 
 public class ClientMain extends PApplet {
 
@@ -58,11 +57,7 @@ public class ClientMain extends PApplet {
     @Override
     public void draw() {
         try {
-            GameState gameState = gameStateManager.getCurrentGameState();
-            ArrayList<Platform> platforms = gameState.getPlatforms();
-            for (Platform platform : platforms) {
-                platform.draw();
-            }
+            gameStateManager.drawCurrentState();
         } catch (Exception e){
             e.printStackTrace();
         }

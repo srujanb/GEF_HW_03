@@ -2,6 +2,7 @@ package ServerSpecific;
 
 import Models.GameObject;
 import Models.GameState;
+import ServerSpecific.Managers.GameStateManager;
 import ServerSpecific.Models.Client;
 
 import java.io.IOException;
@@ -13,10 +14,13 @@ public class GameInstance extends GameObject implements Runnable{
     //Clients with GUID as key and client objects as values.
     private HashMap<Long,Client> clients;
     private Boolean gameStillOn;
-    private GameState gameState;
+    public static GameState gameState;
 
     public GameInstance(){
         clients = new HashMap<>();
+        gameState = new GameState();
+        gameState.initPlatforms();
+        GameStateManager.setCurrentGameState(gameState);
         System.out.println("GameInstance started with GUID: " + GUID);
     }
 
@@ -27,8 +31,6 @@ public class GameInstance extends GameObject implements Runnable{
 
     private void GameLoop(){
         ArrayList<Client> clientsList;
-        gameState = new GameState();
-        gameState.initPlatforms();
         while (true) {
             System.out.println("Running game loop");
             try {
@@ -71,4 +73,5 @@ public class GameInstance extends GameObject implements Runnable{
     public void removeClient(Client client){
         removeClient(client.getGUID());
     }
+
 }

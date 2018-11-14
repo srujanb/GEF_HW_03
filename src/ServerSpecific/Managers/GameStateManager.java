@@ -1,4 +1,4 @@
-package ClientSpecific.Managers;
+package ServerSpecific.Managers;
 
 import Models.GameState;
 import Models.Platform;
@@ -6,7 +6,7 @@ import processing.core.PApplet;
 
 import java.util.ArrayList;
 
-//This is ClientSpecific file.
+//This is ServerSpecific file.
 public class GameStateManager {
 
     private static GameState currentGameState;
@@ -16,23 +16,28 @@ public class GameStateManager {
         this.pApplet = pApplet;
     }
 
-    public GameStateManager() { }
-
     public GameState getCurrentGameState() {
         return currentGameState;
     }
 
     public static void setCurrentGameState(GameState currentGameState) {
+        System.out.println("Setting current game state. ");
+        if (pApplet == null) {
+            System.out.println("Yes papplet is null");
+        } else {
+            System.out.println("No papplet is not null");
+        }
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
-        for (Platform platform: platforms){
+        System.out.println("Platforms size: " + platforms.size());
+        for (Platform platform : platforms) {
             platform.setpApplet(pApplet);
         }
         GameStateManager.currentGameState = currentGameState;
     }
 
-    public void drawCurrentState(){
+    public void drawCurrentState() {
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
-        for (Platform platform: platforms){
+        for (Platform platform : platforms) {
             platform.draw();
         }
     }

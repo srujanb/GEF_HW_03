@@ -1,20 +1,25 @@
 package ServerSpecific;
 
+import ServerSpecific.Managers.GameStateManager;
 import ServerSpecific.Models.Client;
+import processing.core.PApplet;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ServerMain {
+public class ServerMain extends PApplet{
 
     private static final int PORT = 9754;
     private static ServerSocket serverSocket;
     private static GameInstance gameInstance;
+    private static PApplet currentPappletInstance;
+    private static GameStateManager gameStateManager;
 
     private static Boolean serverStillOn = true;
 
     public static void main(String args[]){
+        PApplet.main("ServerSpecific.ServerMain");
         //initialize server.
         try {
             initServer();
@@ -45,8 +50,25 @@ public class ServerMain {
     }
 
     private static void initServer() throws IOException {
+        gameStateManager = new GameStateManager(currentPappletInstance);
         serverSocket = new ServerSocket(PORT);
         gameInstance = new GameInstance();
         (new Thread(gameInstance)).start();
+    }
+
+    @Override
+    public void settings() {
+        size(500,500);
+        currentPappletInstance = this;
+    }
+
+
+    @Override
+    public void draw() {
+        try {
+            gameStateManager.drawCurrentState();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
