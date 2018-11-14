@@ -9,8 +9,8 @@ import java.util.ArrayList;
 //This is ServerSpecific file.
 public class GameStateManager {
 
-    private static GameState currentGameState;
-    private static PApplet pApplet;
+    private GameState currentGameState;
+    private PApplet pApplet;
 
     public GameStateManager(PApplet pApplet) {
         this.pApplet = pApplet;
@@ -20,30 +20,25 @@ public class GameStateManager {
         return currentGameState;
     }
 
-    public static void setCurrentGameState(GameState currentGameState) {
+    public void setCurrentGameState(GameState currentGameState) {
         System.out.println("Setting current game state. ");
-        if (pApplet == null) {
-            System.out.println("Yes papplet is null");
-        } else {
-            System.out.println("No papplet is not null");
-        }
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
         System.out.println("Platforms size: " + platforms.size());
         for (Platform platform : platforms) {
             platform.setpApplet(pApplet);
         }
-        GameStateManager.currentGameState = currentGameState;
+        this.currentGameState = currentGameState;
     }
 
-    public static PApplet getpApplet() {
+    public PApplet getpApplet() {
         return pApplet;
     }
 
-    public static void setpApplet(PApplet pApplet) {
-        GameStateManager.pApplet = pApplet;
+    public void setpApplet(PApplet pApplet) {
+        this.pApplet = pApplet;
     }
 
-    public static void drawCurrentState() {
+    public void drawCurrentState() {
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
         for (Platform platform : platforms) {
             platform.draw();

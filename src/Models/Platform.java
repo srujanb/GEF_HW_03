@@ -2,7 +2,9 @@ package Models;
 
 import processing.core.PApplet;
 
-public class Platform extends GeneralShape{
+import java.io.Serializable;
+
+public class Platform extends GeneralShape implements Serializable{
 
     //velocity
     private int vX = 0;

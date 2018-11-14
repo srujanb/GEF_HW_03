@@ -59,6 +59,7 @@ public class ClientMain extends PApplet {
         try {
             gameStateManager.drawCurrentState();
         } catch (Exception e){
+            //TODO remove this printStackTrace.
             e.printStackTrace();
         }
     }

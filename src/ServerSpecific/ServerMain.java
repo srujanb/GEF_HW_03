@@ -48,9 +48,8 @@ public class ServerMain extends PApplet{
     }
 
     private static void initServer() throws IOException {
-        GameStateManager.setpApplet(currentPappletInstance);
         serverSocket = new ServerSocket(PORT);
-        gameInstance = new GameInstance();
+        gameInstance = new GameInstance(currentPappletInstance);
         (new Thread(gameInstance)).start();
     }
 
@@ -64,9 +63,15 @@ public class ServerMain extends PApplet{
     @Override
     public void draw() {
         try {
-            GameStateManager.drawCurrentState();
-        } catch (Exception e){
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
+//        System.out.println("ServerMain draw");
+//        try {
+//            gameInstance.drawCurrentState();
+//        } catch (Exception e){
+//            e.printStackTrace();
+//        }
     }
 }
