@@ -9,8 +9,8 @@ import java.util.ArrayList;
 //This is ClientSpecific file.
 public class GameStateManager {
 
-    private static GameState currentGameState;
-    private static PApplet pApplet;
+    private GameState currentGameState;
+    private PApplet pApplet;
 
     public GameStateManager(PApplet pApplet) {
         this.pApplet = pApplet;
@@ -22,15 +22,16 @@ public class GameStateManager {
         return currentGameState;
     }
 
-    public static void setCurrentGameState(GameState currentGameState) {
+    public void setCurrentGameState(GameState currentGameState) {
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
         for (Platform platform: platforms){
             platform.setpApplet(pApplet);
         }
-        GameStateManager.currentGameState = currentGameState;
+        this.currentGameState = currentGameState;
     }
 
     public void drawCurrentState(){
+        if (currentGameState == null) return;
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
         for (Platform platform: platforms){
             platform.draw();

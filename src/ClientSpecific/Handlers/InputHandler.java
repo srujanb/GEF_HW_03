@@ -11,9 +11,9 @@ public class InputHandler implements Runnable {
     private final DataInputStream dIn;
     private GameStateManager gameStateManager;
 
-    public InputHandler(DataInputStream dIn) {
+    public InputHandler(DataInputStream dIn, GameStateManager gameStateManager) {
         this.dIn = dIn;
-        gameStateManager = new GameStateManager();
+        this.gameStateManager = gameStateManager;
     }
 
     @Override

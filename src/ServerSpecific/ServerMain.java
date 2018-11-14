@@ -2,6 +2,7 @@ package ServerSpecific;
 
 import ServerSpecific.Managers.GameStateManager;
 import ServerSpecific.Models.Client;
+import Utils.UniversalConstants;
 import processing.core.PApplet;
 
 import java.io.IOException;
@@ -55,7 +56,7 @@ public class ServerMain extends PApplet{
 
     @Override
     public void settings() {
-        size(500,500);
+        size(UniversalConstants.pappletWidth,UniversalConstants.pappletHeight);
         currentPappletInstance = this;
     }
 

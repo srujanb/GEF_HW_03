@@ -3,8 +3,10 @@ package ClientSpecific;
 import ClientSpecific.Handlers.InputHandler;
 import ClientSpecific.Handlers.OutputHandler;
 import ClientSpecific.Managers.GameStateManager;
+import ClientSpecific.Managers.UIManager;
 import Models.GameState;
 import Models.Platform;
+import Utils.UniversalConstants;
 import processing.core.PApplet;
 
 import java.io.DataInputStream;
@@ -19,6 +21,7 @@ public class ClientMain extends PApplet {
     private static OutputHandler outputHandler;
     private static InputHandler inputHandler;
     private static GameStateManager gameStateManager;
+    private static UIManager uiManager;
     private static PApplet pApplet;
 
     public static void main(String args[]){
@@ -31,12 +34,12 @@ public class ClientMain extends PApplet {
         }
         (new Thread(outputHandler)).start();
         (new Thread(inputHandler)).start();
-
+        (new Thread(uiManager)).start();
     }
 
     @Override
     public void settings() {
-        size(500,500);
+        size(UniversalConstants.pappletWidth,UniversalConstants.pappletHeight);
         pApplet = this;
     }
 
@@ -45,19 +48,17 @@ public class ClientMain extends PApplet {
     }
 
     private static void initClient() throws IOException {
-        Socket socket = new Socket(ip,PORT);
-        DataOutputStream dOut = new DataOutputStream(socket.getOutputStream());
-        DataInputStream dIn = new DataInputStream(socket.getInputStream());
-        outputHandler = new OutputHandler(dOut);
-        inputHandler = new InputHandler(dIn);
-
         gameStateManager = new GameStateManager(pApplet);
+        Socket socket = new Socket(ip,PORT);
+        outputHandler = new OutputHandler(new DataOutputStream(socket.getOutputStream()));
+        inputHandler = new InputHandler(new DataInputStream(socket.getInputStream()),gameStateManager);
+        uiManager = new UIManager(pApplet,gameStateManager);
     }
 
     @Override
     public void draw() {
         try {
-            gameStateManager.drawCurrentState();
+            Thread.sleep(1000);
         } catch (Exception e){
             //TODO remove this printStackTrace.
             e.printStackTrace();
