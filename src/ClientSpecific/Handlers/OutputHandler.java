@@ -16,7 +16,7 @@ public class OutputHandler implements Runnable {
 
     @Override
     public void run() {
-        sendMessageAtIntervals();
+//        sendMessageAtIntervals();
     }
 
     private void sendMessageAtIntervals() {

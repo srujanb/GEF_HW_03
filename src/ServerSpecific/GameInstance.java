@@ -53,6 +53,8 @@ public class GameInstance extends GameObject implements Runnable {
                 (int) (UniversalConstants.pappletHeight * 0.5),
                 UniversalConstants.plankWidth,
                 UniversalConstants.plankHeight);
+        platform.setvY(1);
+        platform.setShouldOscillate(true);
         platform.setClr(0, 255, 0);
         platforms.add(platform);
 
@@ -90,20 +92,23 @@ public class GameInstance extends GameObject implements Runnable {
     }
 
     private void GameLoop() {
-        long currentTime;
 
         ArrayList<Client> clientsList;
         while (true) {
-            currentTime = System.currentTimeMillis();
-            System.out.println("Game loop Difference in millis: " + (currentTime - lastLoopTime));
-            lastLoopTime = currentTime;
             try {
-                drawCurrentState();
+//                clearBackground();
+                calculateNextState();
+//                drawCurrentState();
                 Thread.sleep(30);
             } catch (Exception e) {
+                System.out.println("");
                 e.printStackTrace();
             }
         }
+    }
+
+    public void clearBackground() {
+        currentPappletInstance.background(100);
     }
 
     private ArrayList<Client> getClientList() {
@@ -137,6 +142,10 @@ public class GameInstance extends GameObject implements Runnable {
 
     public void removeClient(Client client) {
         removeClient(client.getGUID());
+    }
+
+    private void calculateNextState() {
+        gameStateManager.calculateNextState();
     }
 
     public void drawCurrentState() {

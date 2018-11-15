@@ -63,8 +63,11 @@ public class ServerMain extends PApplet{
     @Override
     public void draw() {
         try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
+            System.out.println("draw");
+            gameInstance.clearBackground();
+            gameInstance.drawCurrentState();
+            Thread.sleep(30);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

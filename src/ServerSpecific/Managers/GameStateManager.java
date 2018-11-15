@@ -38,6 +38,13 @@ public class GameStateManager {
         this.pApplet = pApplet;
     }
 
+    public void calculateNextState() {
+        ArrayList<Platform> platforms = currentGameState.getPlatforms();
+        for (Platform platform: platforms){
+            platform.calculateNewPosition();
+        }
+    }
+
     public void drawCurrentState() {
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
         for (Platform platform : platforms) {

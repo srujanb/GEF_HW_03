@@ -8,4 +8,5 @@ public class UniversalConstants {
     public static final int plankWidth = pappletWidth/5;
     public static final int plankHeight = pappletHeight/25;
 
+    public static final int platformOscRange = pappletHeight/10;
 }
