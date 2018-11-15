@@ -2,7 +2,9 @@ package Models;
 
 import Utils.GuidUtil;
 
-public class GameObject {
+import java.io.Serializable;
+
+public class GameObject implements Serializable{
 
     protected final long GUID;
 

@@ -55,6 +55,7 @@ public class ClientMain extends PApplet {
 
     @Override
     public void draw() {
+        background(100);
         try {
             gameStateManager.drawCurrentState();
             Thread.sleep(30);
