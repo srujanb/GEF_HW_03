@@ -24,10 +24,26 @@ public class GameStateManager {
     }
 
     public void setCurrentGameState(GameState currentGameState) {
+
+        if (null == currentGameState) return;
+
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
-        for (Platform platform: platforms){
-            platform.setpApplet(pApplet);
+        if (null != platforms) {
+            System.out.println("Platforms: " + platforms.size());
+            for (Platform platform : platforms) {
+                platform.setpApplet(pApplet);
+            }
         }
+
+        ArrayList<ClientCharacter> clientCharacters = currentGameState.getClientCharacters();
+        if (null != clientCharacters) {
+            System.out.println("clientCharacters: " + clientCharacters.size());
+            for (ClientCharacter clientCharacter: clientCharacters){
+                clientCharacter.setpApplet(pApplet);
+            }
+        }
+
+
         this.currentGameState = currentGameState;
     }
 
@@ -36,6 +52,7 @@ public class GameStateManager {
 
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
         if (null != platforms) {
+            System.out.println("Platforms: " + platforms.size());
             for (Platform platform : platforms) {
                 platform.draw();
             }
@@ -43,6 +60,7 @@ public class GameStateManager {
 
         ArrayList<ClientCharacter> clientCharacters = currentGameState.getClientCharacters();
         if (null != clientCharacters) {
+            System.out.println("clientCharacters: " + clientCharacters.size());
             for (ClientCharacter clientCharacter: clientCharacters){
                 clientCharacter.draw();
             }
@@ -68,7 +86,4 @@ public class GameStateManager {
 
     }
 
-    public void addClientToGame(ClientCharacter clientCharacter) {
-        currentGameState.addClient(clientCharacter);
-    }
 }
