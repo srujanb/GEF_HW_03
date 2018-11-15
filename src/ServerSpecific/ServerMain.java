@@ -61,6 +61,11 @@ public class ServerMain extends PApplet{
     }
 
     @Override
+    public void setup() {
+        frameRate(UniversalConstants.DEFAULT_FRAME_RATE);
+    }
+
+    @Override
     public void draw() {
         try {
             gameInstance.clearBackground();

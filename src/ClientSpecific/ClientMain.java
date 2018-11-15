@@ -43,6 +43,7 @@ public class ClientMain extends PApplet {
 
     @Override
     public void setup() {
+        frameRate(UniversalConstants.DEFAULT_FRAME_RATE);
     }
 
     private static void initClient() throws IOException {

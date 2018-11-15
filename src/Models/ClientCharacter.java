@@ -13,7 +13,7 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
     private float vY = 0;
     //acceleration
     private float aX = 0;
-    private float aY = (float) 0.1;
+    private float aY = (float) 0.2;
 
     private transient PApplet pApplet;
     private long clientGUID;
