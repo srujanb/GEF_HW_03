@@ -33,6 +33,7 @@ public class InputHandler implements Runnable {
                     gameStateManager.setCurrentGameState((GameState) obj);
                 }
             } catch (Exception e){
+                //TODO remove this later.
                 e.printStackTrace();
             }
         }

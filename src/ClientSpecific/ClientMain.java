@@ -37,7 +37,7 @@ public class ClientMain extends PApplet {
 
     @Override
     public void settings() {
-        size(UniversalConstants.pappletWidth,UniversalConstants.pappletHeight);
+        size(UniversalConstants.PAPPLET_WIDTH,UniversalConstants.PAPPLET_HEIGHT);
         pApplet = this;
     }
 

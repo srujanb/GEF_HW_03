@@ -20,7 +20,7 @@ public class Platform extends GeneralShape implements Serializable{
 
     //other properties
     private Boolean shouldOscillate = false;
-    private int oscillationRange = UniversalConstants.platformOscRange;
+    private int oscillationRange = UniversalConstants.PLATFORM_OSC_RANGE;
 
     private transient PApplet pApplet;
 

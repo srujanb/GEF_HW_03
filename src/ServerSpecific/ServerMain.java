@@ -1,6 +1,5 @@
 package ServerSpecific;
 
-import ServerSpecific.Managers.GameStateManager;
 import ServerSpecific.Models.Client;
 import Utils.UniversalConstants;
 import processing.core.PApplet;
@@ -56,14 +55,13 @@ public class ServerMain extends PApplet{
 
     @Override
     public void settings() {
-        size(UniversalConstants.pappletWidth,UniversalConstants.pappletHeight);
+        size(UniversalConstants.PAPPLET_WIDTH,UniversalConstants.PAPPLET_HEIGHT);
         currentPappletInstance = this;
     }
 
     @Override
     public void draw() {
         try {
-            System.out.println("draw");
             gameInstance.clearBackground();
             gameInstance.drawCurrentState();
             Thread.sleep(30);

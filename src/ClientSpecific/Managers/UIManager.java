@@ -2,6 +2,7 @@ package ClientSpecific.Managers;
 
 import processing.core.PApplet;
 
+//Currently not being used
 public class UIManager implements Runnable{
 
     private PApplet pApplet;

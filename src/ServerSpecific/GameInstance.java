@@ -34,58 +34,6 @@ public class GameInstance extends GameObject implements Runnable {
         System.out.println("GameInstance started with GUID: " + GUID);
     }
 
-    private void initPlatforms(GameState gameState) {
-        ArrayList<Platform> platforms = new ArrayList<>();
-
-        Platform platform;
-
-        //green platforms
-        platform = new Platform(null,
-                (int) (UniversalConstants.pappletWidth * 0.1),
-                (int) (UniversalConstants.pappletHeight * 0.8),
-                UniversalConstants.plankWidth,
-                UniversalConstants.plankHeight);
-        platform.setClr(0, 255, 0);
-        platforms.add(platform);
-
-        platform = new Platform(null,
-                (int) (UniversalConstants.pappletWidth * 0.5 - UniversalConstants.plankWidth / 2),
-                (int) (UniversalConstants.pappletHeight * 0.5),
-                UniversalConstants.plankWidth,
-                UniversalConstants.plankHeight);
-        platform.setvY(1);
-        platform.setShouldOscillate(true);
-        platform.setClr(0, 255, 0);
-        platforms.add(platform);
-
-        platform = new Platform(null,
-                (int) (UniversalConstants.pappletWidth - UniversalConstants.plankWidth - UniversalConstants.pappletWidth * 0.1),
-                (int) (UniversalConstants.pappletHeight * 0.8),
-                UniversalConstants.plankWidth,
-                UniversalConstants.plankHeight);
-        platform.setClr(0, 255, 0);
-        platforms.add(platform);
-
-        //blue platforms
-        platform = new Platform(null,
-                0,
-                (int) (UniversalConstants.pappletHeight * 0.2),
-                UniversalConstants.plankWidth,
-                UniversalConstants.plankHeight);
-        platform.setClr(0, 0, 255);
-        platforms.add(platform);
-
-        platform = new Platform(null,
-                UniversalConstants.pappletWidth - UniversalConstants.plankWidth,
-                (int) (UniversalConstants.pappletHeight * 0.2),
-                UniversalConstants.plankWidth,
-                UniversalConstants.plankHeight);
-        platform.setClr(0, 0, 255);
-        platforms.add(platform);
-
-        gameState.setPlatforms(platforms);
-    }
-
     @Override
     public void run() {
         GameLoop();
@@ -96,12 +44,25 @@ public class GameInstance extends GameObject implements Runnable {
         ArrayList<Client> clientsList;
         while (true) {
             try {
-//                clearBackground();
-                calculateNextState();
-//                drawCurrentState();
-                Thread.sleep(30);
+                int ticks = Timeline.getNextTick();
+                System.out.println("Ticks occured: " + ticks);
+                for (int i = 0; i < ticks; i++) {
+                    calculateNextState();
+                }
+                sendCurrentGameStateToClients();
             } catch (Exception e) {
                 System.out.println("");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void sendCurrentGameStateToClients() {
+        for (long key : clients.keySet()){
+            Client client = clients.get(key);
+            try {
+                client.sendObject(gameStateManager.getCurrentGameState());
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -150,5 +111,57 @@ public class GameInstance extends GameObject implements Runnable {
 
     public void drawCurrentState() {
         gameStateManager.drawCurrentState();
+    }
+
+    private void initPlatforms(GameState gameState) {
+        ArrayList<Platform> platforms = new ArrayList<>();
+
+        Platform platform;
+
+        //green platforms
+        platform = new Platform(null,
+                (int) (UniversalConstants.PAPPLET_WIDTH * 0.1),
+                (int) (UniversalConstants.PAPPLET_HEIGHT * 0.8),
+                UniversalConstants.PLANK_WIDTH,
+                UniversalConstants.PLANK_HEIGHT);
+        platform.setClr(0, 255, 0);
+        platforms.add(platform);
+
+        platform = new Platform(null,
+                (int) (UniversalConstants.PAPPLET_WIDTH * 0.5 - UniversalConstants.PLANK_WIDTH / 2),
+                (int) (UniversalConstants.PAPPLET_HEIGHT * 0.5),
+                UniversalConstants.PLANK_WIDTH,
+                UniversalConstants.PLANK_HEIGHT);
+        platform.setvY(1);
+        platform.setShouldOscillate(true);
+        platform.setClr(0, 255, 0);
+        platforms.add(platform);
+
+        platform = new Platform(null,
+                (int) (UniversalConstants.PAPPLET_WIDTH - UniversalConstants.PLANK_WIDTH - UniversalConstants.PAPPLET_WIDTH * 0.1),
+                (int) (UniversalConstants.PAPPLET_HEIGHT * 0.8),
+                UniversalConstants.PLANK_WIDTH,
+                UniversalConstants.PLANK_HEIGHT);
+        platform.setClr(0, 255, 0);
+        platforms.add(platform);
+
+        //blue platforms
+        platform = new Platform(null,
+                0,
+                (int) (UniversalConstants.PAPPLET_HEIGHT * 0.2),
+                UniversalConstants.PLANK_WIDTH,
+                UniversalConstants.PLANK_HEIGHT);
+        platform.setClr(0, 0, 255);
+        platforms.add(platform);
+
+        platform = new Platform(null,
+                UniversalConstants.PAPPLET_WIDTH - UniversalConstants.PLANK_WIDTH,
+                (int) (UniversalConstants.PAPPLET_HEIGHT * 0.2),
+                UniversalConstants.PLANK_WIDTH,
+                UniversalConstants.PLANK_HEIGHT);
+        platform.setClr(0, 0, 255);
+        platforms.add(platform);
+
+        gameState.setPlatforms(platforms);
     }
 }
