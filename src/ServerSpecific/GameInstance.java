@@ -45,8 +45,7 @@ public class GameInstance extends GameObject implements Runnable {
         while (true) {
             try {
                 int ticks = Timeline.getNextTick();
-                System.out.println("Ticks occured: " + ticks);
-                for (int i = 0; i < ticks; i++) {
+                while (ticks-- > 0){
                     calculateNextState();
                 }
                 sendCurrentGameStateToClients();
