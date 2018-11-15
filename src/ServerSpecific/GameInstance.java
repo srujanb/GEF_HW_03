@@ -130,7 +130,7 @@ public class GameInstance extends GameObject implements Runnable {
                 (int) (UniversalConstants.PAPPLET_HEIGHT * 0.5),
                 UniversalConstants.PLANK_WIDTH,
                 UniversalConstants.PLANK_HEIGHT);
-        platform.setvY(1);
+        platform.setvY(2);
         platform.setShouldOscillate(true);
         platform.setClr(0, 255, 0);
         platforms.add(platform);
@@ -149,6 +149,8 @@ public class GameInstance extends GameObject implements Runnable {
                 (int) (UniversalConstants.PAPPLET_HEIGHT * 0.2),
                 UniversalConstants.PLANK_WIDTH,
                 UniversalConstants.PLANK_HEIGHT);
+        platform.setvX(-1);
+        platform.setShouldOscillate(true);
         platform.setClr(0, 0, 255);
         platforms.add(platform);
 
@@ -157,6 +159,8 @@ public class GameInstance extends GameObject implements Runnable {
                 (int) (UniversalConstants.PAPPLET_HEIGHT * 0.2),
                 UniversalConstants.PLANK_WIDTH,
                 UniversalConstants.PLANK_HEIGHT);
+        platform.setvX(1);
+        platform.setShouldOscillate(true);
         platform.setClr(0, 0, 255);
         platforms.add(platform);
 
