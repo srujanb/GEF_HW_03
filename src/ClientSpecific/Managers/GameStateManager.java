@@ -52,7 +52,6 @@ public class GameStateManager {
 
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
         if (null != platforms) {
-//            System.out.println("Platforms: " + platforms.size());
             for (Platform platform : platforms) {
                 platform.draw();
             }
@@ -60,7 +59,6 @@ public class GameStateManager {
 
         ArrayList<ClientCharacter> clientCharacters = currentGameState.getClientCharacters();
         if (null != clientCharacters) {
-//            System.out.println("clientCharacters: " + clientCharacters.size());
             for (ClientCharacter clientCharacter: clientCharacters){
                 clientCharacter.draw();
             }
@@ -68,9 +66,7 @@ public class GameStateManager {
     }
 
     public void calculateNextState() {
-        System.out.println("Calculate next state called");
         if (null == currentGameState) return;
-        System.out.println("Current game state is not null");
 
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
         if (null != platforms) {
@@ -83,6 +79,16 @@ public class GameStateManager {
         if (null != clientCharacters) {
             for (ClientCharacter clientCharacter: clientCharacters){
                 clientCharacter.calculateNewPosition();
+                //Check client platform collision.
+                for (Platform platform: platforms){
+                    if (clientCharacter.isCollidingWith(platform)){
+                        if (clientCharacter.isAbove(platform)){
+                            clientCharacter.sitOnTopOf(platform);
+                        } else {
+                            clientCharacter.sitUnder(platform);
+                        }
+                    }
+                }
             }
         }
 
