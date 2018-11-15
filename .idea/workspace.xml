@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3458271c-8687-41f4-b4b9-30f5ba856111" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/GEF_HW3_2/ServerSpecific/GameInstance.class" afterPath="$PROJECT_DIR$/out/production/GEF_HW3_2/ServerSpecific/GameInstance.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ServerSpecific/GameInstance.java" afterPath="$PROJECT_DIR$/src/ServerSpecific/GameInstance.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -63,12 +61,12 @@
       <file leaf-file-name="GameInstance.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ServerSpecific/GameInstance.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="47" column="36" lean-forward="false" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+            <state relative-caret-position="194">
+              <caret line="51" column="35" lean-forward="true" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3267#3268#0" expanded="true" />
-                <element signature="e#3318#3319#0" expanded="true" />
+                <element signature="e#3269#3270#0" expanded="true" />
+                <element signature="e#3320#3321#0" expanded="true" />
                 <element signature="method#initPlatforms#0;class#GameInstance#0" expanded="false" />
               </folding>
             </state>
@@ -276,7 +274,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Multirun.Server+Client">
     <configuration name="Client" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="ClientSpecific.ClientMain" />
@@ -409,12 +407,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1541828995473</updated>
-      <workItem from="1541828996766" duration="84692000" />
+      <workItem from="1541828996766" duration="85015000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84692000" />
+    <option name="totallyTimeSpent" value="85015000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-116" y="-1200" width="1920" height="1200" extended-state="0" />
@@ -428,7 +426,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.50438595" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.49561402" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32919255" sideWeight="0.49561402" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32830524" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -704,12 +702,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ServerSpecific/GameInstance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="47" column="36" lean-forward="false" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+        <state relative-caret-position="194">
+          <caret line="51" column="35" lean-forward="true" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3267#3268#0" expanded="true" />
-            <element signature="e#3318#3319#0" expanded="true" />
+            <element signature="e#3269#3270#0" expanded="true" />
+            <element signature="e#3320#3321#0" expanded="true" />
             <element signature="method#initPlatforms#0;class#GameInstance#0" expanded="false" />
           </folding>
         </state>

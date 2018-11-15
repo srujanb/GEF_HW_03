@@ -50,15 +50,14 @@ public class GameInstance extends GameObject implements Runnable {
                 }
                 sendCurrentGameStateToClients();
             } catch (Exception e) {
-                System.out.println("");
                 e.printStackTrace();
             }
         }
     }
 
     private void sendCurrentGameStateToClients() {
-        for (long key : clients.keySet()){
-            Client client = clients.get(key);
+        ArrayList<Client> clients = getClientList();
+        for (Client client: clients){
             try {
                 client.sendObject(gameStateManager.getCurrentGameState());
             } catch (IOException e) {
