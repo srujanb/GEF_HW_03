@@ -25,8 +25,8 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
 
         clr = new int[3];
         clr[0] = 255;
-        clr[1] = 0;
-        clr[2] = 0;
+        clr[1] = 204;
+        clr[2] = 102;
     }
 
     private void moveTo(int x, int y){
@@ -69,7 +69,7 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
         System.out.println("Drawing client: " + clientGUID);
         if (pApplet != null) {
             pApplet.fill(clr[0],clr[1],clr[2]);
-            pApplet.rect(posX, posY, w, h);
+            pApplet.rect(posX, posY, w, h, 7);
         } else {
             System.out.println("papplet is null");
         }
