@@ -1,18 +1,19 @@
 package Models;
 
+import Interfaces.ProcRenderable;
 import Utils.UniversalConstants;
 import processing.core.PApplet;
 
 import java.io.Serializable;
 
-public class Platform extends GeneralShape implements Serializable{
+public class Platform extends GeneralShape implements Serializable, ProcRenderable{
 
     //velocity
     private int vX = 0;
     private int vY = 0;
     //acceleration
-    private int aX = 0;
-    private int aY = 0;
+//    private int aX = 0;
+//    private int aY = 0;
 
     //initial position values
     private int ipX = 0;
@@ -57,21 +58,21 @@ public class Platform extends GeneralShape implements Serializable{
         this.vY = vY;
     }
 
-    public int getaX() {
-        return aX;
-    }
-
-    public void setaX(int aX) {
-        this.aX = aX;
-    }
-
-    public int getaY() {
-        return aY;
-    }
-
-    public void setaY(int aY) {
-        this.aY = aY;
-    }
+//    public int getaX() {
+//        return aX;
+//    }
+//
+//    public void setaX(int aX) {
+//        this.aX = aX;
+//    }
+//
+//    public int getaY() {
+//        return aY;
+//    }
+//
+//    public void setaY(int aY) {
+//        this.aY = aY;
+//    }
 
     public PApplet getpApplet() {
         return pApplet;
@@ -120,6 +121,7 @@ public class Platform extends GeneralShape implements Serializable{
         }
     }
 
+    //Overridden method.
     public void draw(){
         if (pApplet != null) {
             pApplet.fill(clr[0],clr[1],clr[2]);

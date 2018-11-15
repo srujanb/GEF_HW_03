@@ -35,6 +35,7 @@ public class ServerMain extends PApplet{
                 Client client = new Client();
                 client.setSocket(socket);
                 try {
+                    //This gives system enough time to initiate stuffs
                     Thread.sleep(300);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

@@ -6,7 +6,8 @@ import java.util.ArrayList;
 public class GameState implements Serializable{
 
     //Remember, if you add anything here, you also need to add it in GameStateManager.
-    ArrayList<Platform> platforms;
+    private ArrayList<Platform> platforms;
+    private ArrayList<ClientCharacter> clientCharacters = new ArrayList<>();
 
     public ArrayList<Platform> getPlatforms() {
         return platforms;
@@ -16,4 +17,11 @@ public class GameState implements Serializable{
         this.platforms = platforms;
     }
 
+    public void addClient(ClientCharacter clientCharacter){
+        clientCharacters.add(clientCharacter);
+    }
+
+    public ArrayList<ClientCharacter> getClientCharacters() {
+        return clientCharacters;
+    }
 }

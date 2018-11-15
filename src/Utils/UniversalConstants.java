@@ -11,4 +11,6 @@ public class UniversalConstants {
     public static final int PLATFORM_OSC_RANGE = PAPPLET_HEIGHT /10;
 
     public static final int DEFAULT_TICK_SIZE = 30;
+
+    public static final int CLIENT_MAX_VELOCITY = 3;
 }

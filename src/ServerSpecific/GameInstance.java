@@ -1,5 +1,6 @@
 package ServerSpecific;
 
+import Models.ClientCharacter;
 import Models.GameObject;
 import Models.GameState;
 import Models.Platform;
@@ -72,7 +73,6 @@ public class GameInstance extends GameObject implements Runnable {
 
     private ArrayList<Client> getClientList() {
         ArrayList<Client> list = new ArrayList<>();
-        System.out.println("keyset size: " + clients.keySet().size());
         for (long key : clients.keySet()) {
             list.add(clients.get(key));
         }
@@ -81,7 +81,14 @@ public class GameInstance extends GameObject implements Runnable {
 
     public void addClient(Client client) {
         clients.put(client.getGUID(), client);
+        generateCharacterForClient(client);
         sendInitialGameStateToClient(client);
+    }
+
+    private void generateCharacterForClient(Client client) {
+        ClientCharacter clientCharacter = new ClientCharacter(currentPappletInstance,250,250);
+        clientCharacter.setClientGUID(client.getGUID());
+        gameStateManager.addClientToGame(clientCharacter);
     }
 
     private void sendInitialGameStateToClient(Client client) {

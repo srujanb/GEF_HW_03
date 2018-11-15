@@ -1,5 +1,6 @@
 package ServerSpecific.Models;
 
+import Models.ClientCharacter;
 import Models.GameObject;
 import ServerSpecific.Handlers.ClientHandler;
 

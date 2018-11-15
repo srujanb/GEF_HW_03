@@ -1,5 +1,6 @@
 package ServerSpecific.Managers;
 
+import Models.ClientCharacter;
 import Models.GameState;
 import Models.Platform;
 import processing.core.PApplet;
@@ -39,16 +40,46 @@ public class GameStateManager {
     }
 
     public void calculateNextState() {
+        if (null == currentGameState) return;
+
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
-        for (Platform platform: platforms){
-            platform.calculateNewPosition();
+        if (null != platforms) {
+//            System.out.println("platforms size: " + platforms.size());
+            for (Platform platform : platforms) {
+                platform.calculateNewPosition();
+            }
+        }
+
+        ArrayList<ClientCharacter> clientCharacters = currentGameState.getClientCharacters();
+        if (null != clientCharacters) {
+//            System.out.println("clientCharacter size: " + clientCharacters.size());
+            for (ClientCharacter clientCharacter: clientCharacters){
+                clientCharacter.calculateNewPosition();
+            }
         }
     }
 
     public void drawCurrentState() {
+        if (null == currentGameState) return;
+
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
-        for (Platform platform : platforms) {
-            platform.draw();
+        if (null != platforms) {
+            for (Platform platform : platforms) {
+                platform.draw();
+            }
+        }
+
+        ArrayList<ClientCharacter> clientCharacters = currentGameState.getClientCharacters();
+        if (null != clientCharacters) {
+            for (ClientCharacter clientCharacter: clientCharacters){
+                clientCharacter.draw();
+            }
         }
     }
+
+    public void addClientToGame(ClientCharacter clientCharacter) {
+        clientCharacter.setpApplet(pApplet);
+        currentGameState.addClient(clientCharacter);
+    }
+
 }
