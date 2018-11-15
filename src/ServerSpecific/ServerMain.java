@@ -65,7 +65,7 @@ public class ServerMain extends PApplet{
         try {
             gameInstance.clearBackground();
             gameInstance.drawCurrentState();
-            Thread.sleep(30);
+//            Thread.sleep(30);
         } catch (Exception e) {
             e.printStackTrace();
         }

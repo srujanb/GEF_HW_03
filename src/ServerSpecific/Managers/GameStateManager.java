@@ -44,7 +44,6 @@ public class GameStateManager {
 
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
         if (null != platforms) {
-//            System.out.println("platforms size: " + platforms.size());
             for (Platform platform : platforms) {
                 platform.calculateNewPosition();
             }
@@ -52,7 +51,6 @@ public class GameStateManager {
 
         ArrayList<ClientCharacter> clientCharacters = currentGameState.getClientCharacters();
         if (null != clientCharacters) {
-//            System.out.println("clientCharacter size: " + clientCharacters.size());
             for (ClientCharacter clientCharacter: clientCharacters){
                 clientCharacter.calculateNewPosition();
             }

@@ -86,7 +86,7 @@ public class GameInstance extends GameObject implements Runnable {
     }
 
     private void generateCharacterForClient(Client client) {
-        ClientCharacter clientCharacter = new ClientCharacter(currentPappletInstance,250,250);
+        ClientCharacter clientCharacter = new ClientCharacter(currentPappletInstance,250,50);
         clientCharacter.setClientGUID(client.getGUID());
         gameStateManager.addClientToGame(clientCharacter);
     }
