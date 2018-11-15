@@ -1,12 +1,13 @@
 package Models;
 
+import Interfaces.Collidable;
 import Interfaces.ProcRenderable;
 import Utils.UniversalConstants;
 import processing.core.PApplet;
 
 import java.io.Serializable;
 
-public class Platform extends GeneralShape implements Serializable, ProcRenderable{
+public class Platform extends GeneralShape implements Serializable, ProcRenderable, Collidable{
 
     //velocity
     private int vX = 0;
@@ -129,5 +130,33 @@ public class Platform extends GeneralShape implements Serializable, ProcRenderab
         } else {
             System.out.println("papplet is null");
         }
+    }
+
+    @Override
+    public Boolean isCollidingWith(Collidable obj) {
+        if (getRightBound() < obj.getLeftBound() || getLeftBound() > obj.getRightBound()) return false;
+        if (getLowerBound() < obj.getUpperBound() || getUpperBound() > obj.getLowerBound()) return false;
+
+        return true;
+    }
+
+    @Override
+    public int getLeftBound() {
+        return posX;
+    }
+
+    @Override
+    public int getRightBound() {
+        return posX + w;
+    }
+
+    @Override
+    public int getUpperBound() {
+        return posY;
+    }
+
+    @Override
+    public int getLowerBound() {
+        return posY + h;
     }
 }

@@ -1,11 +1,12 @@
 package Models;
 
+import Interfaces.Collidable;
 import Interfaces.ProcRenderable;
 import Utils.UniversalConstants;
 import processing.core.PApplet;
 import java.io.Serializable;
 
-public class ClientCharacter extends GeneralShape implements Serializable, ProcRenderable {
+public class ClientCharacter extends GeneralShape implements Serializable, ProcRenderable, Collidable {
 
     //velocity
     private float vX = 0;
@@ -66,12 +67,58 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
 
     @Override
     public void draw() {
-        System.out.println("Drawing client: " + clientGUID);
+//        System.out.println("Drawing client: " + clientGUID);
         if (pApplet != null) {
             pApplet.fill(clr[0],clr[1],clr[2]);
             pApplet.rect(posX, posY, w, h, 7);
         } else {
             System.out.println("papplet is null");
         }
+    }
+
+    @Override
+    public Boolean isCollidingWith(Collidable obj) {
+        if (getRightBound() < obj.getLeftBound() || getLeftBound() > obj.getRightBound()) return false;
+        if (getLowerBound() < obj.getUpperBound() || getUpperBound() > obj.getLowerBound()) return false;
+
+        return true;
+    }
+
+    @Override
+    public int getLeftBound() {
+        return posX;
+    }
+
+    @Override
+    public int getRightBound() {
+        return posX + w;
+    }
+
+    @Override
+    public int getUpperBound() {
+        return posY;
+    }
+
+    @Override
+    public int getLowerBound() {
+        return posY + h;
+    }
+
+    public boolean isAbove(Collidable obj) {
+        if (getLowerBound() < obj.getLowerBound()) return true;
+        else return false;
+    }
+
+    public void sitOnTopOf(Collidable obj) {
+        System.out.println("sitOnTopOf");
+        vY = 0;
+        posY = obj.getUpperBound() - h;
+    }
+
+    public void sitUnder(Collidable obj) {
+        System.out.println("sitUnder");
+
+        vY = 0;
+        posY = obj.getLowerBound();
     }
 }

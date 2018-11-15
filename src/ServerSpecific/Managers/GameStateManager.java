@@ -53,6 +53,15 @@ public class GameStateManager {
         if (null != clientCharacters) {
             for (ClientCharacter clientCharacter: clientCharacters){
                 clientCharacter.calculateNewPosition();
+                for (Platform platform: platforms){
+                    if (clientCharacter.isCollidingWith(platform)){
+                        if (clientCharacter.isAbove(platform)){
+                            clientCharacter.sitOnTopOf(platform);
+                        } else {
+                            clientCharacter.sitUnder(platform);
+                        }
+                    }
+                }
             }
         }
     }
