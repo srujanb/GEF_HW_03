@@ -16,5 +16,4 @@ public class GameState implements Serializable{
         this.platforms = platforms;
     }
 
-
 }
