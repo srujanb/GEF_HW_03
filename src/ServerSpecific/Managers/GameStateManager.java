@@ -53,6 +53,7 @@ public class GameStateManager {
         if (null != clientCharacters) {
             for (ClientCharacter clientCharacter: clientCharacters){
                 clientCharacter.calculateNewPosition();
+                //Check client platform collision.
                 for (Platform platform: platforms){
                     if (clientCharacter.isCollidingWith(platform)){
                         if (clientCharacter.isAbove(platform)){

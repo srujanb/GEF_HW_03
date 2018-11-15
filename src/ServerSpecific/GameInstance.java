@@ -1,5 +1,7 @@
 package ServerSpecific;
 
+import Events.GameTimeNotificationEvent;
+import Events.InitialGameData;
 import Models.ClientCharacter;
 import Models.GameObject;
 import Models.GameState;
@@ -48,9 +50,23 @@ public class GameInstance extends GameObject implements Runnable {
                 int ticks = Timeline.getNextTick();
                 while (ticks-- > 0){
                     calculateNextState();
+                    sendCurrentGameTimeToAllClients();
                 }
-                sendCurrentGameStateToClients();
+//                sendCurrentGameStateToClients();
             } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void sendCurrentGameTimeToAllClients() {
+        GameTimeNotificationEvent gameTimeNotificationEventEvent = new GameTimeNotificationEvent();
+        gameTimeNotificationEventEvent.setGameTime(Timeline.getServerGameTimeTicks());
+        ArrayList<Client> clients = getClientList();
+        for (Client client: clients){
+            try {
+                client.sendObject(gameTimeNotificationEventEvent);
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -94,7 +110,10 @@ public class GameInstance extends GameObject implements Runnable {
     private void sendInitialGameStateToClient(Client client) {
         System.out.println("Sending initial gameState to client.");
         try {
-            client.sendObject(gameStateManager.getCurrentGameState());
+            InitialGameData initialGameData = new InitialGameData();
+            initialGameData.setCurrentGameTime(Timeline.getServerGameTimeTicks());
+            initialGameData.setGameState(gameStateManager.getCurrentGameState());
+            client.sendObject(initialGameData);
             System.out.println("initial gameState sent.");
         } catch (IOException e) {
             e.printStackTrace();
