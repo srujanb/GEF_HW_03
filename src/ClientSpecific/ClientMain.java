@@ -3,9 +3,7 @@ package ClientSpecific;
 import ClientSpecific.Handlers.InputHandler;
 import ClientSpecific.Handlers.OutputHandler;
 import ClientSpecific.Managers.GameStateManager;
-import ClientSpecific.Managers.UIManager;
-import Models.GameState;
-import Models.Platform;
+//import ClientSpecific.Managers.UIManager;
 import Utils.UniversalConstants;
 import processing.core.PApplet;
 
@@ -21,7 +19,7 @@ public class ClientMain extends PApplet {
     private static OutputHandler outputHandler;
     private static InputHandler inputHandler;
     private static GameStateManager gameStateManager;
-    private static UIManager uiManager;
+//    private static UIManager uiManager;
     private static PApplet pApplet;
 
     public static void main(String args[]){
@@ -34,7 +32,7 @@ public class ClientMain extends PApplet {
         }
         (new Thread(outputHandler)).start();
         (new Thread(inputHandler)).start();
-        (new Thread(uiManager)).start();
+//        (new Thread(uiManager)).start();
     }
 
     @Override
@@ -52,13 +50,14 @@ public class ClientMain extends PApplet {
         Socket socket = new Socket(ip,PORT);
         outputHandler = new OutputHandler(new DataOutputStream(socket.getOutputStream()));
         inputHandler = new InputHandler(new DataInputStream(socket.getInputStream()),gameStateManager);
-        uiManager = new UIManager(pApplet,gameStateManager);
+//        uiManager = new UIManager(pApplet,gameStateManager);
     }
 
     @Override
     public void draw() {
         try {
-            Thread.sleep(1000);
+            gameStateManager.drawCurrentState();
+            Thread.sleep(30);
         } catch (Exception e){
             //TODO remove this printStackTrace.
             e.printStackTrace();

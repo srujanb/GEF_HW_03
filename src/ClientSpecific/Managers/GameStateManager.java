@@ -37,4 +37,11 @@ public class GameStateManager {
             platform.draw();
         }
     }
+
+    public void calculateNextState() {
+        ArrayList<Platform> platforms = currentGameState.getPlatforms();
+        for (Platform platform: platforms){
+            platform.calculateNewPosition();
+        }
+    }
 }
