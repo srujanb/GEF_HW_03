@@ -21,7 +21,6 @@ public class ClientPhysicsHandler implements Runnable{
         while (true) {
             try {
                 long ticks = Timeline.getLocalGameLagAndReset();
-                System.out.println("ticks = " + ticks);
                 while (ticks-- > 0){
                     gameStateManager.calculateNextState();
                 }

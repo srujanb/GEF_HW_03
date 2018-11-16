@@ -29,7 +29,7 @@ public class PanelButton {
         pApplet.text(buttonText, x + (w / 2), y + (h / 2));
     }
 
-    boolean isMouseOver(int mouseX, int mouseY) {
+    public boolean isMouseOver(int mouseX, int mouseY) {
         if (mouseX > x && mouseX < (x + w) && mouseY > y && mouseY < (y + h)) {
             return true;
         }

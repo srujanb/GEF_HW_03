@@ -22,4 +22,8 @@ public class UniversalConstants {
     public static final int EVENT_KB_DOWN = 738;
     public static final int EVENT_KB_LEFT = 36;
     public static final int EVENT_KB_RIGHT = 249;
+
+    public static final int BUTTON_NONE = 281;
+    public static final int BUTTON_PAUSE = 697;
+    public static final int BUTTON_PLAY = 235;
 }

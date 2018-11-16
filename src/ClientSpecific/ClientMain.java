@@ -24,6 +24,7 @@ public class ClientMain extends PApplet {
     private static InputHandler inputHandler;
     private static GameStateManager gameStateManager;
     private static ClientPhysicsHandler clientPhysicsHandler;
+    private static int mouseOver;
     //    private static UIManager uiManager;
     private static PApplet pApplet;
 
@@ -70,26 +71,51 @@ public class ClientMain extends PApplet {
             //TODO remove this printStackTrace.
             e.printStackTrace();
         }
-        drawBottomPanel();
+        drawBottomPanel(mouseX,mouseY);
     }
 
-    private void drawBottomPanel() {
+    @Override
+    public void mousePressed() {
+        if (mouseOver == UniversalConstants.BUTTON_PAUSE){
+            System.out.println("BUTTON_PAUSE");
+        } else if (mouseOver == UniversalConstants.BUTTON_PLAY){
+            System.out.println("BUTTON_PLAY");
+        }
+    }
+
+    private void drawBottomPanel(int mouseX, int mouseY) {
         pApplet.fill(255, 255, 255);
         pApplet.rect(0,
                 UniversalConstants.GAMESCREEN_HEIGHT + 1,
                 UniversalConstants.PAPPLET_WIDTH,
                 UniversalConstants.PAPPLET_HEIGHT - UniversalConstants.GAMESCREEN_HEIGHT);
-        //pause button
         int buttonWidth = 80;
         int buttonHeight = 30;
+        //pause button
         int panelTop = UniversalConstants.GAMESCREEN_HEIGHT + 1;
         PanelButton pauseButton = new PanelButton("Pause",
                 pApplet,
-                50,
+                10,
                 panelTop + 30,
                 buttonWidth,
                 buttonHeight);
         pauseButton.draw();
+        //play button
+        PanelButton playButton = new PanelButton("Play",
+                pApplet,
+                110,
+                panelTop + 30,
+                buttonWidth,
+                buttonHeight);
+        playButton.draw();
+
+        if (pauseButton.isMouseOver(mouseX,mouseY)){
+            mouseOver = UniversalConstants.BUTTON_PAUSE;
+        } else if (playButton.isMouseOver(mouseX,mouseY)){
+            mouseOver = UniversalConstants.BUTTON_PLAY;
+        }
+
+
     }
 
 
