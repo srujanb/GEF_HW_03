@@ -5,8 +5,10 @@ import ClientSpecific.Handlers.InputHandler;
 import ClientSpecific.Handlers.OutputHandler;
 import ClientSpecific.Managers.GameStateManager;
 //import ClientSpecific.Managers.UIManager;
+import Events.KeyboardEvent;
 import Utils.UniversalConstants;
 import processing.core.PApplet;
+import processing.event.KeyEvent;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -67,5 +69,39 @@ public class ClientMain extends PApplet {
             //TODO remove this printStackTrace.
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent event) {
+//        super.keyPressed(event);
+        System.out.println("Some event");
+        if (key == CODED) {
+            if (keyCode == UP) {
+                try {
+                    outputHandler.sendObject(new KeyboardEvent(UniversalConstants.EVENT_KB_JUMP));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (keyCode == LEFT) {
+                try {
+                    outputHandler.sendObject(new KeyboardEvent(UniversalConstants.EVENT_KB_LEFT));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (keyCode == RIGHT) {
+                try {
+                    outputHandler.sendObject(new KeyboardEvent(UniversalConstants.EVENT_KB_RIGHT));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (keyCode == DOWN) {
+                try {
+                    outputHandler.sendObject(new KeyboardEvent(UniversalConstants.EVENT_KB_DOWN));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
     }
 }

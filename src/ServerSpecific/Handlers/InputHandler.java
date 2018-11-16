@@ -1,5 +1,6 @@
 package ServerSpecific.Handlers;
 
+import Events.KeyboardEvent;
 import ServerSpecific.Models.Client;
 import Utils.ObjectUtil;
 
@@ -35,6 +36,9 @@ public class InputHandler implements Runnable {
                 Object object = ObjectUtil.convertFromString(string);
                 if (object instanceof String){
                     System.out.println("Server received string " + object + " from client: " + client.getGUID());
+                } else if (object instanceof KeyboardEvent){
+                    KeyboardEvent keyboardEvent = (KeyboardEvent) object;
+                    keyboardEvent.setClientGUID(client.getGUID());
                 }
             } catch (IOException ioException) {
                 ioException.printStackTrace();

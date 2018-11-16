@@ -14,4 +14,9 @@ public class UniversalConstants {
     public static final int DEFAULT_FRAME_RATE = 30;
 
     public static final int CLIENT_MAX_VELOCITY = 3;
+
+    public static final int EVENT_KB_JUMP = 503;
+    public static final int EVENT_KB_DOWN = 738;
+    public static final int EVENT_KB_LEFT = 36;
+    public static final int EVENT_KB_RIGHT = 249;
 }

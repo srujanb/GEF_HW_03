@@ -51,7 +51,6 @@ public class GameInstance extends GameObject implements Runnable {
                     calculateNextState();
                     sendCurrentGameTimeToAllClients();
                 }
-//                sendCurrentGameStateToClients();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -71,16 +70,16 @@ public class GameInstance extends GameObject implements Runnable {
         }
     }
 
-    private void sendCurrentGameStateToClients() {
-        ArrayList<Client> clients = getClientList();
-        for (Client client: clients){
-            try {
-                client.sendObject(gameStateManager.getCurrentGameState());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    private void sendCurrentGameStateToClients() {
+//        ArrayList<Client> clients = getClientList();
+//        for (Client client: clients){
+//            try {
+//                client.sendObject(gameStateManager.getCurrentGameState());
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     public void clearBackground() {
         currentPappletInstance.background(100);
