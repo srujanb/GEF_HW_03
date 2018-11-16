@@ -56,6 +56,7 @@ public class GameStateManager {
 
         ArrayList<ClientCharacter> clientCharacters = currentGameState.getClientCharacters();
         if (null != clientCharacters) {
+            ArrayList<ClientCharacter> previousClientCharacter = new ArrayList<>();
             for (ClientCharacter clientCharacter: clientCharacters){
                 clientCharacter.calculateNewPosition();
                 //Check client platform collision.
@@ -68,6 +69,25 @@ public class GameStateManager {
                         }
                     }
                 }
+                for (ClientCharacter otherCharacter: previousClientCharacter){
+                    if (clientCharacter.isCollidingWith(otherCharacter)){
+                        if (clientCharacter.isHorizontallyCollidingWith(otherCharacter)){
+                            System.out.println("character collision: Found Hosizontal collision." );
+                            if (clientCharacter.isLeftOf(otherCharacter)){
+                                clientCharacter.stayLeftOf(otherCharacter);
+                            } else {
+                                clientCharacter.stayRightOf(otherCharacter);
+                            }
+                            clientCharacter.exchangeHorizontalVelocitiesWith(otherCharacter);
+                        } else if (clientCharacter.isAbove(otherCharacter)){
+                            clientCharacter.sitOnTopOf(otherCharacter);
+                        } else {
+                            otherCharacter.sitOnTopOf(clientCharacter);
+                        }
+                    }
+                }
+                //add in the previousClientCharactersList
+                previousClientCharacter.add(clientCharacter);
             }
         }
     }

@@ -107,9 +107,29 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
         return posY + h;
     }
 
+    public boolean isHorizontallyCollidingWith(Collidable obj) {
+        int vDist = Math.min(Math.abs(this.getUpperBound() - obj.getLowerBound()), Math.abs(this.getLowerBound() - obj.getUpperBound()));
+        int hDist = Math.min(Math.abs(this.getLeftBound() - obj.getRightBound()), Math.abs(this.getRightBound() - obj.getLeftBound()));
+
+        return hDist < vDist;
+    }
+
+    public boolean isLeftOf(Collidable obj){
+        if (this.getLeftBound() < obj.getLeftBound()) return true;
+        else return false;
+    }
+
     public boolean isAbove(Collidable obj) {
         if (getLowerBound() < obj.getLowerBound()) return true;
         else return false;
+    }
+
+    public void stayLeftOf(Collidable obj){
+        this.posX = obj.getLeftBound() - h;
+    }
+
+    public void stayRightOf(Collidable obj) {
+        this.posX = obj.getRightBound();
     }
 
     public void sitOnTopOf(Collidable obj) {
@@ -118,9 +138,14 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
     }
 
     public void sitUnder(Collidable obj) {
-
         vY = 1;
         posY = obj.getLowerBound();
+    }
+
+    public void exchangeHorizontalVelocitiesWith(ClientCharacter otherCharacter) {
+        float x = this.vX;
+        this.vX = otherCharacter.vX;
+        otherCharacter.vX = x;
     }
 
     public void jump() {
