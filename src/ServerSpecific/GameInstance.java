@@ -2,10 +2,12 @@ package ServerSpecific;
 
 import Events.GameTimeNotificationEvent;
 import Events.GameStateUpdateEvent;
+import Events.KeyboardEvent;
 import Models.ClientCharacter;
 import Models.GameObject;
 import Models.GameState;
 import Models.Platform;
+import ServerSpecific.Managers.EventsManager;
 import ServerSpecific.Managers.GameStateManager;
 import ServerSpecific.Models.Client;
 import Utils.UniversalConstants;
@@ -21,6 +23,7 @@ public class GameInstance extends GameObject implements Runnable {
     //Clients with GUID as key and client objects as values.
     private HashMap<Long, Client> clients;
     private GameStateManager gameStateManager;
+    private EventsManager eventsManager;
     private long lastLoopTime = 0;
 
     public GameInstance(PApplet currentPappletInstance) {
@@ -30,10 +33,12 @@ public class GameInstance extends GameObject implements Runnable {
     }
 
     private void generateInitialGameState() {
+        eventsManager = new EventsManager();
         GameState gameState = new GameState();
         initPlatforms(gameState);
         gameStateManager = new GameStateManager(currentPappletInstance);
         gameStateManager.setCurrentGameState(gameState);
+        gameStateManager.setEventsManager(eventsManager);
         System.out.println("GameInstance started with GUID: " + GUID);
     }
 
@@ -117,6 +122,10 @@ public class GameInstance extends GameObject implements Runnable {
             e.printStackTrace();
             sendInitialGameStateToClient(client);
         }
+    }
+
+    public void keyboardInputEvent(KeyboardEvent event){
+        eventsManager.addKeyboardEvent(event);
     }
 
     public void removeClient(long GUID) {

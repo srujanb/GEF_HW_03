@@ -13,7 +13,7 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
     private float vY = 0;
     //acceleration
     private float aX = 0;
-    private float aY = (float) 0.2;
+    private float aY = (float) 0.3;
 
     private transient PApplet pApplet;
     private long clientGUID;
@@ -41,6 +41,7 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
 
         vX += aX;
         vY += aY;
+        System.out.println("new vY:" + vY);
 
         if (vX > UniversalConstants.CLIENT_MAX_VELOCITY) vX = UniversalConstants.CLIENT_MAX_VELOCITY;
         else if (vX < -1*UniversalConstants.CLIENT_MAX_VELOCITY) vX = -1*UniversalConstants.CLIENT_MAX_VELOCITY;
@@ -120,5 +121,9 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
 
         vY = 0;
         posY = obj.getLowerBound();
+    }
+
+    public void jump() {
+        vY -= 10;
     }
 }

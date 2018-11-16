@@ -32,7 +32,7 @@ public class ServerMain extends PApplet{
             try {
                 System.out.println("Accepting clients");
                 Socket socket = serverSocket.accept();
-                Client client = new Client();
+                Client client = new Client(gameInstance);
                 client.setSocket(socket);
                 try {
                     //This gives system enough time to initiate stuffs

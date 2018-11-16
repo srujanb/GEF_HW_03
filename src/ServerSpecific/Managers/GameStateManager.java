@@ -1,8 +1,10 @@
 package ServerSpecific.Managers;
 
+import Events.KeyboardEvent;
 import Models.ClientCharacter;
 import Models.GameState;
 import Models.Platform;
+import Utils.UniversalConstants;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ public class GameStateManager {
 
     private GameState currentGameState;
     private PApplet pApplet;
+    private EventsManager eventsManager;
 
     public GameStateManager(PApplet pApplet) {
         this.pApplet = pApplet;
@@ -42,6 +45,8 @@ public class GameStateManager {
     public void calculateNextState() {
         if (null == currentGameState) return;
 
+        handleEvents();
+
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
         if (null != platforms) {
             for (Platform platform : platforms) {
@@ -67,6 +72,16 @@ public class GameStateManager {
         }
     }
 
+    private void handleEvents() {
+        ArrayList<KeyboardEvent> events = eventsManager.getKeyboardEvents();
+        for (KeyboardEvent event: events){
+            if (event.getEventType() == UniversalConstants.EVENT_KB_JUMP){
+                currentGameState.characterJump(event.getClientGUID());
+            }
+        }
+        eventsManager.clearKeyboardEvents();
+    }
+
     public void drawCurrentState() {
         if (null == currentGameState) return;
 
@@ -90,4 +105,7 @@ public class GameStateManager {
         currentGameState.addClient(clientCharacter);
     }
 
+    public void setEventsManager(EventsManager eventsManager) {
+        this.eventsManager = eventsManager;
+    }
 }

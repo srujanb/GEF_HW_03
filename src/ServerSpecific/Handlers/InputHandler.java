@@ -39,6 +39,7 @@ public class InputHandler implements Runnable {
                 } else if (object instanceof KeyboardEvent){
                     KeyboardEvent keyboardEvent = (KeyboardEvent) object;
                     keyboardEvent.setClientGUID(client.getGUID());
+                    client.getGameInstance().keyboardInputEvent(keyboardEvent);
                 }
             } catch (IOException ioException) {
                 ioException.printStackTrace();

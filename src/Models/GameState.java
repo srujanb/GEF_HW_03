@@ -29,7 +29,7 @@ public class GameState implements Serializable{
     }
 
     public void addClient(ClientCharacter clientCharacter){
-        clientCharacters.put(clientCharacter.getGUID(),clientCharacter);
+        clientCharacters.put(clientCharacter.getClientGUID(),clientCharacter);
     }
 
     public ArrayList<ClientCharacter> getClientCharacters() {
@@ -46,5 +46,9 @@ public class GameState implements Serializable{
 
     public void updateClientCharacter(ClientCharacter clientCharacter){
         clientCharacters.put(clientCharacter.getGUID(),clientCharacter);
+    }
+
+    public void characterJump(long GUID){
+        clientCharacters.get(GUID).jump();
     }
 }
