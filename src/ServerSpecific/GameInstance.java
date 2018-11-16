@@ -155,16 +155,16 @@ public class GameInstance extends GameObject implements Runnable {
 
         //green platforms
         platform = new Platform(null,
-                (int) (UniversalConstants.PAPPLET_WIDTH * 0.1),
-                (int) (UniversalConstants.PAPPLET_HEIGHT * 0.8),
+                (int) (UniversalConstants.GAMESCREEN_WIDTH * 0.1),
+                (int) (UniversalConstants.GAMESCREEN_HEIGHT * 0.8),
                 UniversalConstants.PLANK_WIDTH,
                 UniversalConstants.PLANK_HEIGHT);
         platform.setClr(0, 255, 0);
         platforms.add(platform);
 
         platform = new Platform(null,
-                (int) (UniversalConstants.PAPPLET_WIDTH * 0.5 - UniversalConstants.PLANK_WIDTH / 2),
-                (int) (UniversalConstants.PAPPLET_HEIGHT * 0.5),
+                (int) (UniversalConstants.GAMESCREEN_WIDTH * 0.5 - UniversalConstants.PLANK_WIDTH / 2),
+                (int) (UniversalConstants.GAMESCREEN_HEIGHT * 0.5),
                 UniversalConstants.PLANK_WIDTH,
                 UniversalConstants.PLANK_HEIGHT);
         platform.setvY(2);
@@ -173,8 +173,8 @@ public class GameInstance extends GameObject implements Runnable {
         platforms.add(platform);
 
         platform = new Platform(null,
-                (int) (UniversalConstants.PAPPLET_WIDTH - UniversalConstants.PLANK_WIDTH - UniversalConstants.PAPPLET_WIDTH * 0.1),
-                (int) (UniversalConstants.PAPPLET_HEIGHT * 0.8),
+                (int) (UniversalConstants.GAMESCREEN_WIDTH - UniversalConstants.PLANK_WIDTH - UniversalConstants.GAMESCREEN_WIDTH * 0.1),
+                (int) (UniversalConstants.GAMESCREEN_HEIGHT * 0.8),
                 UniversalConstants.PLANK_WIDTH,
                 UniversalConstants.PLANK_HEIGHT);
         platform.setClr(0, 255, 0);
@@ -183,7 +183,7 @@ public class GameInstance extends GameObject implements Runnable {
         //blue platforms
         platform = new Platform(null,
                 0,
-                (int) (UniversalConstants.PAPPLET_HEIGHT * 0.2),
+                (int) (UniversalConstants.GAMESCREEN_HEIGHT * 0.2),
                 UniversalConstants.PLANK_WIDTH,
                 UniversalConstants.PLANK_HEIGHT);
         platform.setvX(-1);
@@ -192,8 +192,8 @@ public class GameInstance extends GameObject implements Runnable {
         platforms.add(platform);
 
         platform = new Platform(null,
-                UniversalConstants.PAPPLET_WIDTH - UniversalConstants.PLANK_WIDTH,
-                (int) (UniversalConstants.PAPPLET_HEIGHT * 0.2),
+                UniversalConstants.GAMESCREEN_WIDTH - UniversalConstants.PLANK_WIDTH,
+                (int) (UniversalConstants.GAMESCREEN_HEIGHT * 0.2),
                 UniversalConstants.PLANK_WIDTH,
                 UniversalConstants.PLANK_HEIGHT);
         platform.setvX(1);

@@ -56,7 +56,7 @@ public class ServerMain extends PApplet{
 
     @Override
     public void settings() {
-        size(UniversalConstants.PAPPLET_WIDTH,UniversalConstants.PAPPLET_HEIGHT);
+        size(UniversalConstants.GAMESCREEN_WIDTH,UniversalConstants.GAMESCREEN_HEIGHT);
         currentPappletInstance = this;
     }
 

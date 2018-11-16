@@ -6,6 +6,7 @@ import ClientSpecific.Handlers.OutputHandler;
 import ClientSpecific.Managers.GameStateManager;
 //import ClientSpecific.Managers.UIManager;
 import Events.KeyboardEvent;
+import Models.PanelButton;
 import Utils.UniversalConstants;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
@@ -23,14 +24,14 @@ public class ClientMain extends PApplet {
     private static InputHandler inputHandler;
     private static GameStateManager gameStateManager;
     private static ClientPhysicsHandler clientPhysicsHandler;
-//    private static UIManager uiManager;
+    //    private static UIManager uiManager;
     private static PApplet pApplet;
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
         PApplet.main("ClientSpecific.ClientMain");
-        try{
+        try {
             initClient();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return;
         }
@@ -42,7 +43,7 @@ public class ClientMain extends PApplet {
 
     @Override
     public void settings() {
-        size(UniversalConstants.PAPPLET_WIDTH,UniversalConstants.PAPPLET_HEIGHT);
+        size(UniversalConstants.PAPPLET_WIDTH, UniversalConstants.PAPPLET_HEIGHT);
         pApplet = this;
     }
 
@@ -53,9 +54,9 @@ public class ClientMain extends PApplet {
 
     private static void initClient() throws IOException {
         gameStateManager = new GameStateManager(pApplet);
-        Socket socket = new Socket(ip,PORT);
+        Socket socket = new Socket(ip, PORT);
         outputHandler = new OutputHandler(new DataOutputStream(socket.getOutputStream()));
-        inputHandler = new InputHandler(new DataInputStream(socket.getInputStream()),gameStateManager);
+        inputHandler = new InputHandler(new DataInputStream(socket.getInputStream()), gameStateManager);
         clientPhysicsHandler = new ClientPhysicsHandler(gameStateManager);
 //        uiManager = new UIManager(pApplet,gameStateManager);
     }
@@ -65,11 +66,32 @@ public class ClientMain extends PApplet {
         background(100);
         try {
             gameStateManager.drawCurrentState();
-        } catch (Exception e){
+        } catch (Exception e) {
             //TODO remove this printStackTrace.
             e.printStackTrace();
         }
+        drawBottomPanel();
     }
+
+    private void drawBottomPanel() {
+        pApplet.fill(255, 255, 255);
+        pApplet.rect(0,
+                UniversalConstants.GAMESCREEN_HEIGHT + 1,
+                UniversalConstants.PAPPLET_WIDTH,
+                UniversalConstants.PAPPLET_HEIGHT - UniversalConstants.GAMESCREEN_HEIGHT);
+        //pause button
+        int buttonWidth = 80;
+        int buttonHeight = 30;
+        int panelTop = UniversalConstants.GAMESCREEN_HEIGHT + 1;
+        PanelButton pauseButton = new PanelButton("Pause",
+                pApplet,
+                50,
+                panelTop + 30,
+                buttonWidth,
+                buttonHeight);
+        pauseButton.draw();
+    }
+
 
     @Override
     public void keyPressed(KeyEvent event) {

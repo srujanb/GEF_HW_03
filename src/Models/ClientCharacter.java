@@ -48,7 +48,7 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
         if (vY < -1*UniversalConstants.CLIENT_MAX_VELOCITY) vY = -1*UniversalConstants.CLIENT_MAX_VELOCITY;
 
         if (getLeftBound() < 0) posX = 0;
-        if (getRightBound() > UniversalConstants.PAPPLET_WIDTH) posX = UniversalConstants.PAPPLET_WIDTH - w;
+        if (getRightBound() > UniversalConstants.GAMESCREEN_WIDTH) posX = UniversalConstants.GAMESCREEN_WIDTH - w;
         if (getUpperBound() < 0) posY = 0;
         //Check if it didn't go out of bounds
 

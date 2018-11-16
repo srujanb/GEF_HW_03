@@ -86,7 +86,7 @@ public class GameStateManager {
                         }
                     }
                 }
-                if (clientCharacter.getUpperBound() > UniversalConstants.PAPPLET_HEIGHT){
+                if (clientCharacter.getUpperBound() > UniversalConstants.GAMESCREEN_HEIGHT){
                     currentGameState.setHasUpdates(true);
                     clientCharacter.respawn();
                 }
