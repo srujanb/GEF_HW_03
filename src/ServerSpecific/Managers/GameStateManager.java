@@ -130,6 +130,7 @@ public class GameStateManager {
     public void addClientToGame(ClientCharacter clientCharacter) {
         clientCharacter.setpApplet(pApplet);
         currentGameState.addClient(clientCharacter);
+        currentGameState.setHasUpdates(true);
     }
 
     public void setEventsManager(EventsManager eventsManager) {
