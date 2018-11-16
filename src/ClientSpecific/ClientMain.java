@@ -115,6 +115,32 @@ public class ClientMain extends PApplet {
                 buttonWidth,
                 buttonHeight);
         playButton.draw();
+        //start record button
+        PanelButton startRecordButton = new PanelButton("Start Record",
+                pApplet,
+                210,
+                panelTop + 30,
+                buttonWidth,
+                buttonHeight);
+        startRecordButton.draw();
+        //stop record button
+        PanelButton stopRecordButton = new PanelButton("stop Record",
+                pApplet,
+                310,
+                panelTop + 30,
+                buttonWidth,
+                buttonHeight);
+        stopRecordButton.draw();
+        //replay button
+        PanelButton replayButton = new PanelButton("Replay",
+                pApplet,
+                410,
+                panelTop + 30,
+                buttonWidth,
+                buttonHeight);
+        replayButton.draw();
+        
+        
 
         if (pauseButton.isMouseOver(mouseX,mouseY)){
             mouseOver = UniversalConstants.BUTTON_PAUSE;
