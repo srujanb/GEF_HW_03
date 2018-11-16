@@ -84,6 +84,15 @@ public class ClientMain extends PApplet {
             } else if (mouseOver == UniversalConstants.BUTTON_PLAY) {
                 System.out.println("BUTTON_PLAY");
                 outputHandler.sendObject(new PanelEvent(UniversalConstants.BUTTON_PLAY));
+            } else if (mouseOver == UniversalConstants.BUTTON_RECORD_START) {
+                System.out.println("BUTTON_REC_START");
+                outputHandler.sendObject(new PanelEvent(UniversalConstants.BUTTON_RECORD_START));
+            } else if (mouseOver == UniversalConstants.BUTTON_RECORD_STOP) {
+                System.out.println("BUTTON_REC_STOP");
+                outputHandler.sendObject(new PanelEvent(UniversalConstants.BUTTON_RECORD_STOP));
+            } else if (mouseOver == UniversalConstants.BUTTON_REPLAY) {
+                System.out.println("BUTTON_REPLAY");
+                outputHandler.sendObject(new PanelEvent(UniversalConstants.BUTTON_REPLAY));
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -146,6 +155,12 @@ public class ClientMain extends PApplet {
             mouseOver = UniversalConstants.BUTTON_PAUSE;
         } else if (playButton.isMouseOver(mouseX,mouseY)){
             mouseOver = UniversalConstants.BUTTON_PLAY;
+        } else if (startRecordButton.isMouseOver(mouseX,mouseY)){
+            mouseOver = UniversalConstants.BUTTON_RECORD_START;
+        } else if (stopRecordButton.isMouseOver(mouseX,mouseY)){
+            mouseOver = UniversalConstants.BUTTON_RECORD_STOP;
+        } else if (replayButton.isMouseOver(mouseX,mouseY)){
+            mouseOver = UniversalConstants.BUTTON_REPLAY;
         } else {
             mouseOver = UniversalConstants.BUTTON_NONE;
         }

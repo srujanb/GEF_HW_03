@@ -106,6 +106,12 @@ public class GameStateManager {
             Timeline.setSpeed((float) 0);
         } else if (UniversalConstants.BUTTON_PLAY == panelEvent.getEventType()){
             Timeline.setSpeed(1);
+        } else if (UniversalConstants.BUTTON_RECORD_START == panelEvent.getEventType()){
+            System.out.println("RECORDING");
+        } else if (UniversalConstants.BUTTON_RECORD_STOP == panelEvent.getEventType()){
+            System.out.println("RECORDING STOPPED");
+        } else if (UniversalConstants.BUTTON_REPLAY == panelEvent.getEventType()){
+            System.out.println("REPLAY");
         }
         eventsManager.resetPanelEvent();
     }
