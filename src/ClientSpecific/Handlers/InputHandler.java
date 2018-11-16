@@ -3,11 +3,9 @@ package ClientSpecific.Handlers;
 import ClientSpecific.Managers.GameStateManager;
 import ClientSpecific.Timeline;
 import Events.GameTimeNotificationEvent;
-import Events.InitialGameData;
-import Models.GameState;
+import Events.GameStateUpdateEvent;
 import Utils.ObjectUtil;
 
-import javax.naming.directory.InitialDirContext;
 import java.io.DataInputStream;
 
 public class InputHandler implements Runnable {
@@ -32,12 +30,12 @@ public class InputHandler implements Runnable {
                 Object obj = ObjectUtil.convertFromString(string);
                 if (obj instanceof String){
                     System.out.println("From server" + obj);
-                } else if (obj instanceof InitialGameData){
+                } else if (obj instanceof GameStateUpdateEvent){
                     System.out.println("Received initial game data");
-                    InitialGameData initialGameData = (InitialGameData) obj;
-                    Timeline.setLatestServerGameTime(initialGameData.getCurrentGameTime());
-                    Timeline.setLatestLocalGameTime(initialGameData.getCurrentGameTime());
-                    gameStateManager.setCurrentGameState(initialGameData.getGameState());
+                    GameStateUpdateEvent gameStateUpdateEvent = (GameStateUpdateEvent) obj;
+                    Timeline.setLatestServerGameTime(gameStateUpdateEvent.getCurrentGameTime());
+                    Timeline.setLatestLocalGameTime(gameStateUpdateEvent.getCurrentGameTime());
+                    gameStateManager.setCurrentGameState(gameStateUpdateEvent.getGameState());
                 } else if (obj instanceof GameTimeNotificationEvent){
                     GameTimeNotificationEvent gameTimeNotificationEvent = (GameTimeNotificationEvent) obj;
                     Timeline.setLatestServerGameTime(gameTimeNotificationEvent.getGameTime());

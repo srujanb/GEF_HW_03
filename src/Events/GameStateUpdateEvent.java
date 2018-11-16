@@ -5,7 +5,7 @@ import Models.GameState;
 
 import java.io.Serializable;
 
-public class InitialGameData extends GameObject implements Serializable{
+public class GameStateUpdateEvent extends GameObject implements Serializable{
 
     private long currentGameTime;
     private GameState gameState;

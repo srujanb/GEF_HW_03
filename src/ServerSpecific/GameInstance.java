@@ -1,7 +1,7 @@
 package ServerSpecific;
 
 import Events.GameTimeNotificationEvent;
-import Events.InitialGameData;
+import Events.GameStateUpdateEvent;
 import Models.ClientCharacter;
 import Models.GameObject;
 import Models.GameState;
@@ -110,10 +110,10 @@ public class GameInstance extends GameObject implements Runnable {
     private void sendInitialGameStateToClient(Client client) {
         System.out.println("Sending initial gameState to client.");
         try {
-            InitialGameData initialGameData = new InitialGameData();
-            initialGameData.setCurrentGameTime(Timeline.getServerGameTimeTicks());
-            initialGameData.setGameState(gameStateManager.getCurrentGameState());
-            client.sendObject(initialGameData);
+            GameStateUpdateEvent gameStateUpdateEvent = new GameStateUpdateEvent();
+            gameStateUpdateEvent.setCurrentGameTime(Timeline.getServerGameTimeTicks());
+            gameStateUpdateEvent.setGameState(gameStateManager.getCurrentGameState());
+            client.sendObject(gameStateUpdateEvent);
             System.out.println("initial gameState sent.");
         } catch (IOException e) {
             e.printStackTrace();

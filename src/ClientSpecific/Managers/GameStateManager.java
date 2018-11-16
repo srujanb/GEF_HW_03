@@ -1,5 +1,6 @@
 package ClientSpecific.Managers;
 
+import Events.GameObjectUpdateEvent;
 import Models.ClientCharacter;
 import Models.GameState;
 import Models.Platform;
@@ -61,6 +62,17 @@ public class GameStateManager {
         if (null != clientCharacters) {
             for (ClientCharacter clientCharacter: clientCharacters){
                 clientCharacter.draw();
+            }
+        }
+    }
+
+    public void updatePartialGameState(GameObjectUpdateEvent obj) {
+        calculateNextState();
+        GameObjectUpdateEvent gameObjectUpdateEvent = obj;
+        if (null != obj.getPlatforms()){
+            for (long key: obj.getPlatforms().keySet()){
+                Platform platform = obj.getPlatforms().get(key);
+
             }
         }
     }

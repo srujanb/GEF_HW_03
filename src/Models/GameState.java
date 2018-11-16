@@ -24,4 +24,8 @@ public class GameState implements Serializable{
     public ArrayList<ClientCharacter> getClientCharacters() {
         return clientCharacters;
     }
+
+    public void updatePlatform(Platform platform){
+
+    }
 }
