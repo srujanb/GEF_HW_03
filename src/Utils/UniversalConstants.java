@@ -13,7 +13,7 @@ public class UniversalConstants {
     public static final int DEFAULT_TICK_SIZE = 30;
     public static final int DEFAULT_FRAME_RATE = 30;
 
-    public static final int CLIENT_MAX_VELOCITY = 3;
+    public static final int CLIENT_MAX_VELOCITY = 8;
 
     public static final int EVENT_KB_JUMP = 503;
     public static final int EVENT_KB_DOWN = 738;

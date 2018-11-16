@@ -55,6 +55,16 @@ public class GameState implements Serializable{
         clientCharacters.get(GUID).jump();
     }
 
+    public void characterLeft(long GUID){
+        clientCharacters.get(GUID).goLeft();
+    }
+    public void characterRight(long GUID){
+        clientCharacters.get(GUID).goRight();
+    }
+    public void characterDown(long GUID){
+        clientCharacters.get(GUID).goDown();
+    }
+
     public Boolean hasUpdates(){
         return hasUpdates;
     }

@@ -39,12 +39,14 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
         posX += vX;
         posY += vY;
 
-        vX += aX;
+        vX *= 0.9; //friction
         vY += aY;
-        System.out.println("new vY:" + vY);
 
-        if (vX > UniversalConstants.CLIENT_MAX_VELOCITY) vX = UniversalConstants.CLIENT_MAX_VELOCITY;
-        else if (vX < -1*UniversalConstants.CLIENT_MAX_VELOCITY) vX = -1*UniversalConstants.CLIENT_MAX_VELOCITY;
+        if (vX > -0.2 && vX < 0.2) vX = 0;
+
+//        if (vX > UniversalConstants.CLIENT_MAX_VELOCITY) vX = UniversalConstants.CLIENT_MAX_VELOCITY;
+//        else if (vX < -1*UniversalConstants.CLIENT_MAX_VELOCITY) vX = -1*UniversalConstants.CLIENT_MAX_VELOCITY;
+        if (vY < -1*UniversalConstants.CLIENT_MAX_VELOCITY) vY = -1*UniversalConstants.CLIENT_MAX_VELOCITY;
     }
 
 
@@ -111,19 +113,29 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
     }
 
     public void sitOnTopOf(Collidable obj) {
-        System.out.println("sitOnTopOf");
         vY = 0;
         posY = obj.getUpperBound() - h;
     }
 
     public void sitUnder(Collidable obj) {
-        System.out.println("sitUnder");
 
-        vY = 0;
+        vY = 1;
         posY = obj.getLowerBound();
     }
 
     public void jump() {
-        vY -= 10;
+        vY -= 7;
+    }
+
+    public void goLeft() {
+        vX -= 5;
+    }
+
+    public void goRight() {
+        vX += 5;
+    }
+
+    public void goDown() {
+        vY = UniversalConstants.CLIENT_MAX_VELOCITY;
     }
 }

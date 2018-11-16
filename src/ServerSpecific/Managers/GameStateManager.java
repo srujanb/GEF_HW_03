@@ -78,6 +78,12 @@ public class GameStateManager {
         for (KeyboardEvent event: events){
             if (event.getEventType() == UniversalConstants.EVENT_KB_JUMP){
                 currentGameState.characterJump(event.getClientGUID());
+            } else if (event.getEventType() == UniversalConstants.EVENT_KB_LEFT){
+                currentGameState.characterLeft(event.getClientGUID());
+            } else if (event.getEventType() == UniversalConstants.EVENT_KB_RIGHT){
+                currentGameState.characterRight(event.getClientGUID());
+            } else if (event.getEventType() == UniversalConstants.EVENT_KB_DOWN){
+                currentGameState.characterDown(event.getClientGUID());
             }
         }
         eventsManager.clearKeyboardEvents();
