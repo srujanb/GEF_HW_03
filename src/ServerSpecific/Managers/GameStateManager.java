@@ -86,6 +86,10 @@ public class GameStateManager {
                         }
                     }
                 }
+                if (clientCharacter.getUpperBound() > UniversalConstants.PAPPLET_HEIGHT){
+                    currentGameState.setHasUpdates(true);
+                    clientCharacter.respawn();
+                }
                 //add in the previousClientCharactersList
                 previousClientCharacter.add(clientCharacter);
             }

@@ -17,6 +17,7 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
 
     private transient PApplet pApplet;
     private long clientGUID;
+    private int score;
 
     public ClientCharacter(PApplet pApplet,int x, int y){
         posX = x;
@@ -166,5 +167,11 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
 
     public void goDown() {
         vY = UniversalConstants.CLIENT_MAX_VELOCITY;
+    }
+
+    public void respawn() {
+        score = 0;
+        posX = 250;
+        posY = 50;
     }
 }

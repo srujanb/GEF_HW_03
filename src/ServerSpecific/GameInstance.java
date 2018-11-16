@@ -61,6 +61,7 @@ public class GameInstance extends GameObject implements Runnable {
             }
             if (gameStateManager.getCurrentGameState().hasUpdates()){
                 sendCurrentGameStateToClients();
+                gameStateManager.getCurrentGameState().setHasUpdates(false);
             }
         }
     }
