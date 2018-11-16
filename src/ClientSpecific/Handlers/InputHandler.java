@@ -4,6 +4,7 @@ import ClientSpecific.Managers.GameStateManager;
 import ClientSpecific.Timeline;
 import Events.GameTimeNotificationEvent;
 import Events.GameStateUpdateEvent;
+import Models.GameState;
 import Utils.ObjectUtil;
 
 import java.io.DataInputStream;
@@ -39,6 +40,8 @@ public class InputHandler implements Runnable {
                 } else if (obj instanceof GameTimeNotificationEvent){
                     GameTimeNotificationEvent gameTimeNotificationEvent = (GameTimeNotificationEvent) obj;
                     Timeline.setLatestServerGameTime(gameTimeNotificationEvent.getGameTime());
+                } else if (obj instanceof GameState){
+                    gameStateManager.setCurrentGameState((GameState) obj);
                 }
             } catch (Exception e){
                 //TODO remove this later.

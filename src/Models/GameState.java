@@ -1,5 +1,7 @@
 package Models;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +11,7 @@ public class GameState implements Serializable{
     //Remember, if you add anything here, you also need to add it in GameStateManager.
     private HashMap<Long,Platform> platforms;
     private HashMap<Long,ClientCharacter> clientCharacters = new HashMap<>();
+    private boolean hasUpdates = false;
 
     public ArrayList<Platform> getPlatforms() {
         ArrayList<Platform> platformsList = new ArrayList<>();
@@ -50,5 +53,13 @@ public class GameState implements Serializable{
 
     public void characterJump(long GUID){
         clientCharacters.get(GUID).jump();
+    }
+
+    public Boolean hasUpdates(){
+        return hasUpdates;
+    }
+
+    public void setHasUpdates(boolean b) {
+        this.hasUpdates = b;
     }
 }

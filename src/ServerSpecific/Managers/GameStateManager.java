@@ -74,6 +74,7 @@ public class GameStateManager {
 
     private void handleEvents() {
         ArrayList<KeyboardEvent> events = eventsManager.getKeyboardEvents();
+        if (events.size() > 0) currentGameState.setHasUpdates(true);
         for (KeyboardEvent event: events){
             if (event.getEventType() == UniversalConstants.EVENT_KB_JUMP){
                 currentGameState.characterJump(event.getClientGUID());
