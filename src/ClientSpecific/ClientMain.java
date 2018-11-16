@@ -6,6 +6,7 @@ import ClientSpecific.Handlers.OutputHandler;
 import ClientSpecific.Managers.GameStateManager;
 //import ClientSpecific.Managers.UIManager;
 import Events.KeyboardEvent;
+import Events.PanelEvent;
 import Models.PanelButton;
 import Utils.UniversalConstants;
 import processing.core.PApplet;
@@ -76,10 +77,16 @@ public class ClientMain extends PApplet {
 
     @Override
     public void mousePressed() {
-        if (mouseOver == UniversalConstants.BUTTON_PAUSE){
-            System.out.println("BUTTON_PAUSE");
-        } else if (mouseOver == UniversalConstants.BUTTON_PLAY){
-            System.out.println("BUTTON_PLAY");
+        try {
+            if (mouseOver == UniversalConstants.BUTTON_PAUSE) {
+                System.out.println("BUTTON_PAUSE");
+                outputHandler.sendObject(new PanelEvent(UniversalConstants.BUTTON_PAUSE));
+            } else if (mouseOver == UniversalConstants.BUTTON_PLAY) {
+                System.out.println("BUTTON_PLAY");
+                outputHandler.sendObject(new PanelEvent(UniversalConstants.BUTTON_PLAY));
+            }
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -113,6 +120,8 @@ public class ClientMain extends PApplet {
             mouseOver = UniversalConstants.BUTTON_PAUSE;
         } else if (playButton.isMouseOver(mouseX,mouseY)){
             mouseOver = UniversalConstants.BUTTON_PLAY;
+        } else {
+            mouseOver = UniversalConstants.BUTTON_NONE;
         }
 
 

@@ -3,6 +3,7 @@ package ServerSpecific;
 import Events.GameTimeNotificationEvent;
 import Events.GameStateUpdateEvent;
 import Events.KeyboardEvent;
+import Events.PanelEvent;
 import Models.ClientCharacter;
 import Models.GameObject;
 import Models.GameState;
@@ -52,7 +53,7 @@ public class GameInstance extends GameObject implements Runnable {
         while (true) {
             try {
                 int ticks = Timeline.getNextTick();
-                while (ticks-- > 0){
+                while (ticks-- > 0 || gamePlayEvent()){
                     calculateNextState();
                     sendCurrentGameTimeToAllClients();
                 }
@@ -64,6 +65,18 @@ public class GameInstance extends GameObject implements Runnable {
                 gameStateManager.getCurrentGameState().setHasUpdates(false);
             }
         }
+    }
+
+    private boolean gamePlayEvent() {
+        try {
+            if (Timeline.getTickSize() >= 1000) {
+                if (eventsManager.getPanelEvent().getEventType() == UniversalConstants.BUTTON_PLAY);
+                System.out.println("Returning true");
+                return true;
+            }
+
+        } catch (Exception e){ }
+        return false;
     }
 
     private void sendCurrentGameTimeToAllClients() {
@@ -130,6 +143,10 @@ public class GameInstance extends GameObject implements Runnable {
 
     public void keyboardInputEvent(KeyboardEvent event){
         eventsManager.addKeyboardEvent(event);
+    }
+
+    public void panelEvent(PanelEvent panelEvent) {
+        eventsManager.setPanelEvent(panelEvent);
     }
 
     public void removeClient(long GUID) {
@@ -203,4 +220,5 @@ public class GameInstance extends GameObject implements Runnable {
 
         gameState.setPlatforms(platforms);
     }
+
 }

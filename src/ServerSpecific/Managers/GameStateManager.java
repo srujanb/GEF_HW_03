@@ -1,9 +1,11 @@
 package ServerSpecific.Managers;
 
 import Events.KeyboardEvent;
+import Events.PanelEvent;
 import Models.ClientCharacter;
 import Models.GameState;
 import Models.Platform;
+import ServerSpecific.Timeline;
 import Utils.UniversalConstants;
 import processing.core.PApplet;
 
@@ -45,7 +47,8 @@ public class GameStateManager {
     public void calculateNextState() {
         if (null == currentGameState) return;
 
-        handleEvents();
+        handleKeyboardEvents();
+        handlePanelEvents();
 
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
         if (null != platforms) {
@@ -96,7 +99,18 @@ public class GameStateManager {
         }
     }
 
-    private void handleEvents() {
+    private void handlePanelEvents() {
+        PanelEvent panelEvent = eventsManager.getPanelEvent();
+        if (null == panelEvent) return;
+        if (UniversalConstants.BUTTON_PAUSE == panelEvent.getEventType()){
+            Timeline.setSpeed((float) 0);
+        } else if (UniversalConstants.BUTTON_PLAY == panelEvent.getEventType()){
+            Timeline.setSpeed(1);
+        }
+        eventsManager.resetPanelEvent();
+    }
+
+    private void handleKeyboardEvents() {
         ArrayList<KeyboardEvent> events = eventsManager.getKeyboardEvents();
         if (events.size() > 0) currentGameState.setHasUpdates(true);
         for (KeyboardEvent event: events){
