@@ -43,7 +43,6 @@ public class GameInstance extends GameObject implements Runnable {
     }
 
     private void GameLoop() {
-
         ArrayList<Client> clientsList;
         while (true) {
             try {

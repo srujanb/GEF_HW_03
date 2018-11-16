@@ -72,7 +72,13 @@ public class GameStateManager {
         if (null != obj.getPlatforms()){
             for (long key: obj.getPlatforms().keySet()){
                 Platform platform = obj.getPlatforms().get(key);
-
+                currentGameState.updatePlatform(platform);
+            }
+        }
+        if (null != obj.getClientCharacters()){
+            for (long key: obj.getClientCharacters().keySet()){
+                ClientCharacter clientCharacter = obj.getClientCharacters().get(key);
+                currentGameState.updateClientCharacter(clientCharacter);
             }
         }
     }
