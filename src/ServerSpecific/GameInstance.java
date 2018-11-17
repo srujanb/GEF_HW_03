@@ -4,10 +4,7 @@ import Events.GameTimeNotificationEvent;
 import Events.GameStateUpdateEvent;
 import Events.KeyboardEvent;
 import Events.PanelEvent;
-import Models.ClientCharacter;
-import Models.GameObject;
-import Models.GameState;
-import Models.Platform;
+import Models.*;
 import ServerSpecific.Managers.EventsManager;
 import ServerSpecific.Managers.GameStateManager;
 import ServerSpecific.Models.Client;
@@ -53,8 +50,8 @@ public class GameInstance extends GameObject implements Runnable {
         while (true) {
             try {
                 int ticks = Timeline.getNextTick();
-                while (ticks-- > 0 || gamePlayEvent()){
-                    calculateNextState();
+                while (ticks-- > 0){
+                    calculateNextState(false);
                     sendCurrentGameTimeToAllClients();
                 }
             } catch (Exception e) {
@@ -65,18 +62,6 @@ public class GameInstance extends GameObject implements Runnable {
                 gameStateManager.getCurrentGameState().setHasUpdates(false);
             }
         }
-    }
-
-    private boolean gamePlayEvent() {
-        try {
-            if (Timeline.getTickSize() >= 1000) {
-                if (eventsManager.getPanelEvent().getEventType() == UniversalConstants.BUTTON_PLAY);
-                System.out.println("Returning true");
-                return true;
-            }
-
-        } catch (Exception e){ }
-        return false;
     }
 
     private void sendCurrentGameTimeToAllClients() {
@@ -146,6 +131,7 @@ public class GameInstance extends GameObject implements Runnable {
     }
 
     public void panelEvent(PanelEvent panelEvent) {
+        System.out.println("GameInstance - Got new event");
         eventsManager.setPanelEvent(panelEvent);
     }
 
@@ -157,8 +143,8 @@ public class GameInstance extends GameObject implements Runnable {
         removeClient(client.getGUID());
     }
 
-    private void calculateNextState() {
-        gameStateManager.calculateNextState();
+    private void calculateNextState(Boolean justHandleEvents) {
+        gameStateManager.calculateNextState(justHandleEvents);
     }
 
     public void drawCurrentState() {

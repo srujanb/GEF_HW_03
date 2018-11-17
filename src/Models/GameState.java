@@ -6,9 +6,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class GameState implements Serializable{
+public class GameState implements Serializable,Cloneable{
 
-    //Remember, if you add anything here, you also need to add it in GameStateManager.
+    //Remember, if you add anything here, you also need to add it in GameStateManager and also to the clone block below.
+    private long gameTime;
     private HashMap<Long,Platform> platforms;
     private HashMap<Long,ClientCharacter> clientCharacters = new HashMap<>();
     private boolean hasUpdates = false;
@@ -43,6 +44,14 @@ public class GameState implements Serializable{
         return clientCharactersList;
     }
 
+    public long getGameTime() {
+        return gameTime;
+    }
+
+    public void setGameTime(long gameTime) {
+        this.gameTime = gameTime;
+    }
+
     public void updatePlatform(Platform platform){
         platforms.put(platform.getGUID(),platform);
     }
@@ -71,5 +80,26 @@ public class GameState implements Serializable{
 
     public void setHasUpdates(boolean b) {
         this.hasUpdates = b;
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+//        return super.clone();
+        GameState gameState = null;
+        try {
+            gameState = (GameState) super.clone();
+            if (platforms != null){
+                for (Long key: platforms.keySet()){
+                    gameState.platforms.put(key, (Platform) platforms.get(key).clone());
+                }
+            }
+            if (clientCharacters != null){
+                for (Long key: clientCharacters.keySet()){
+                    gameState.clientCharacters.put(key, (ClientCharacter) clientCharacters.get(key).clone());
+                }
+            }
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return gameState;
     }
 }

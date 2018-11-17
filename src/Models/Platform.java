@@ -7,7 +7,7 @@ import processing.core.PApplet;
 
 import java.io.Serializable;
 
-public class Platform extends GeneralShape implements Serializable, ProcRenderable, Collidable{
+public class Platform extends GeneralShape implements Serializable, ProcRenderable, Collidable, Cloneable{
 
     //velocity
     private int vX = 0;
@@ -158,5 +158,10 @@ public class Platform extends GeneralShape implements Serializable, ProcRenderab
     @Override
     public int getLowerBound() {
         return posY + h;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

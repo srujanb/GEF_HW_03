@@ -6,7 +6,7 @@ import Utils.UniversalConstants;
 import processing.core.PApplet;
 import java.io.Serializable;
 
-public class ClientCharacter extends GeneralShape implements Serializable, ProcRenderable, Collidable {
+public class ClientCharacter extends GeneralShape implements Serializable, ProcRenderable, Collidable, Cloneable {
 
     //velocity
     private float vX = 0;
@@ -173,5 +173,10 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
         score = 0;
         posX = 250;
         posY = 50;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

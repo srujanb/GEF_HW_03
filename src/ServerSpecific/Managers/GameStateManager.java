@@ -3,6 +3,7 @@ package ServerSpecific.Managers;
 import Events.KeyboardEvent;
 import Events.PanelEvent;
 import Models.ClientCharacter;
+import Models.GameRecording;
 import Models.GameState;
 import Models.Platform;
 import ServerSpecific.Timeline;
@@ -10,6 +11,7 @@ import Utils.UniversalConstants;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 //This is ServerSpecific file.
 public class GameStateManager {
@@ -17,6 +19,7 @@ public class GameStateManager {
     private GameState currentGameState;
     private PApplet pApplet;
     private EventsManager eventsManager;
+    private GameRecording gameRecording;
 
     public GameStateManager(PApplet pApplet) {
         this.pApplet = pApplet;
@@ -44,8 +47,20 @@ public class GameStateManager {
         this.pApplet = pApplet;
     }
 
-    public void calculateNextState() {
+    public void calculateNextState(Boolean justHandleEvents) {
         if (null == currentGameState) return;
+
+        if (gameRecording != null && gameRecording.hasGameState(Timeline.getServerGameTimeTicks())){
+            try {
+                currentGameState = (GameState) gameRecording.getGameState(Timeline.getServerGameTimeTicks()).clone();
+                printTempGameInfo();
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("GameStateManager: There is a state for time: " + Timeline.getServerGameTimeTicks());
+            return;
+        }
+        currentGameState.setGameTime(Timeline.getServerGameTimeTicks());
 
         handleKeyboardEvents();
         handlePanelEvents();
@@ -99,24 +114,57 @@ public class GameStateManager {
         }
     }
 
-    private void handlePanelEvents() {
+    private void printTempGameInfo() {
+        System.out.println("GameStateManager: currentGameState time: " + Timeline.getServerGameTimeTicks() + " , " + currentGameState.getGameTime() );
+        System.out.println("GameStateManager: Char PosX" + currentGameState.getClientCharacters().get(0).getPosX());
+    }
+
+    private void printTempHashmapInfo() {
+        System.out.println("GameStateManager: Printing all game states");
+        HashMap<Long,GameState> mymap = gameRecording.getGameStateMap();
+        for (Long key: mymap.keySet()){
+            GameState gameState = mymap.get(key);
+            System.out.println("vX: " + gameState.getClientCharacters().get(0).getPosX());
+        }
+    }
+
+    public void handlePanelEvents() {
         PanelEvent panelEvent = eventsManager.getPanelEvent();
         if (null == panelEvent) return;
         if (UniversalConstants.BUTTON_PAUSE == panelEvent.getEventType()){
             Timeline.setSpeed((float) 0);
         } else if (UniversalConstants.BUTTON_PLAY == panelEvent.getEventType()){
+            gameRecording = null;
             Timeline.setSpeed(1);
         } else if (UniversalConstants.BUTTON_RECORD_START == panelEvent.getEventType()){
-            System.out.println("RECORDING");
+            if (gameRecording == null) {
+                gameRecording = new GameRecording();
+                gameRecording.setCurrentState(GameRecording.RECORDING);
+                gameRecording.setRecordingStartTime(Timeline.getServerGameTimeTicks());
+                recordCurrentGameStateIfApplicable();
+            }
         } else if (UniversalConstants.BUTTON_RECORD_STOP == panelEvent.getEventType()){
-            System.out.println("RECORDING STOPPED");
+            if (gameRecording != null) {
+                gameRecording.setCurrentState(GameRecording.STOPPED);
+                gameRecording.setRecordingStopTime(Timeline.getServerGameTimeTicks());
+                recordCurrentGameStateIfApplicable();
+                Timeline.setSpeed(0);
+                printTempHashmapInfo();
+            }
         } else if (UniversalConstants.BUTTON_REPLAY == panelEvent.getEventType()){
-            System.out.println("REPLAY");
+            System.out.println("GameStateManager replay called");
+            if (gameRecording != null) {
+                gameRecording.setCurrentState(GameRecording.REPLAYING);
+                System.out.println("GameStateManager replay called not returned");
+                Timeline.setServerGameTimeTicks(gameRecording.getRecordingStartTime());
+                Timeline.setSpeed(1);
+            }
         }
         eventsManager.resetPanelEvent();
     }
 
     private void handleKeyboardEvents() {
+        if (!(gameRecording == null || gameRecording.getCurrentState() == GameRecording.RECORDING)) return;
         ArrayList<KeyboardEvent> events = eventsManager.getKeyboardEvents();
         if (events.size() > 0) currentGameState.setHasUpdates(true);
         for (KeyboardEvent event: events){
@@ -130,11 +178,29 @@ public class GameStateManager {
                 currentGameState.characterDown(event.getClientGUID());
             }
         }
+        if (events.size() > 0) recordCurrentGameStateIfApplicable();
         eventsManager.clearKeyboardEvents();
+    }
+
+    private void recordCurrentGameStateIfApplicable() {
+        System.out.println("GameStateManager recordCurrentGameStateIfApplicable called");
+        if (gameRecording != null){
+            if (gameRecording.getCurrentState() == GameRecording.RECORDING){
+                System.out.println("recording now..");
+                try {
+                    gameRecording.addGameState(Timeline.getServerGameTimeTicks(), (GameState) currentGameState.clone());
+                    printTempGameInfo();
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     public void drawCurrentState() {
         if (null == currentGameState) return;
+
+//        System.out.println("GameStateManager draw method: " + currentGameState.getGameTime());
 
         ArrayList<Platform> platforms = currentGameState.getPlatforms();
         if (null != platforms) {

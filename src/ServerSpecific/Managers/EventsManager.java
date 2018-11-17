@@ -5,6 +5,7 @@ import Events.PanelEvent;
 import ServerSpecific.Timeline;
 import Utils.UniversalConstants;
 
+import javax.naming.TimeLimitExceededException;
 import java.util.ArrayList;
 
 public class EventsManager {
@@ -19,6 +20,11 @@ public class EventsManager {
     public void setPanelEvent(PanelEvent panelEvent) {
         if (panelEvent.getEventType() == UniversalConstants.BUTTON_PAUSE){
             if (Timeline.getTickSize() >= 1000) return;
+        } else if (panelEvent.getEventType() == UniversalConstants.BUTTON_PLAY
+                || panelEvent.getEventType() == UniversalConstants.BUTTON_REPLAY){
+            if (Timeline.getTickSize() >= 1000) {
+                Timeline.setSpeed(1);
+            }
         }
         this.panelEvent = panelEvent;
     }

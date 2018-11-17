@@ -17,6 +17,8 @@ public class Timeline {
     }
 
     public static int getNextTick(){
+//        System.out.println("Timeline.java getNextTick with size: " + tickSize);
+//        System.out.println("Timeline: ServerGameTimeTicks: " + serverGameTimeTicks);
         if (tickSize >= 1000) {
             try {
                 realTimeAtLastTick = System.currentTimeMillis();
@@ -46,6 +48,10 @@ public class Timeline {
 
     public static long getServerGameTimeTicks() {
         return serverGameTimeTicks;
+    }
+
+    public static void setServerGameTimeTicks(long time){
+        serverGameTimeTicks = time;
     }
 
     public static void setSpeed(float speed){
