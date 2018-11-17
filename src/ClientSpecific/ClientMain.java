@@ -93,6 +93,21 @@ public class ClientMain extends PApplet {
             } else if (mouseOver == UniversalConstants.BUTTON_REPLAY) {
                 System.out.println("BUTTON_REPLAY");
                 outputHandler.sendObject(new PanelEvent(UniversalConstants.BUTTON_REPLAY));
+            } else if (mouseOver == UniversalConstants.BUTTON_SPEED_01) {
+                System.out.println("BUTTON_SPEED");
+                outputHandler.sendObject(new PanelEvent(UniversalConstants.BUTTON_SPEED_01));
+            } else if (mouseOver == UniversalConstants.BUTTON_SPEED_02) {
+                System.out.println("BUTTON_SPEED");
+                outputHandler.sendObject(new PanelEvent(UniversalConstants.BUTTON_SPEED_02));
+            } else if (mouseOver == UniversalConstants.BUTTON_SPEED_03) {
+                System.out.println("BUTTON_SPEED");
+                outputHandler.sendObject(new PanelEvent(UniversalConstants.BUTTON_SPEED_03));
+            } else if (mouseOver == UniversalConstants.BUTTON_SPEED_04) {
+                System.out.println("BUTTON_SPEED");
+                outputHandler.sendObject(new PanelEvent(UniversalConstants.BUTTON_SPEED_04));
+            } else if (mouseOver == UniversalConstants.BUTTON_SPEED_05) {
+                System.out.println("BUTTON_SPEED");
+                outputHandler.sendObject(new PanelEvent(UniversalConstants.BUTTON_SPEED_05));
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -107,12 +122,12 @@ public class ClientMain extends PApplet {
                 UniversalConstants.PAPPLET_HEIGHT - UniversalConstants.GAMESCREEN_HEIGHT);
         int buttonWidth = 80;
         int buttonHeight = 30;
-        //pause button
         int panelTop = UniversalConstants.GAMESCREEN_HEIGHT + 1;
+        //pause button
         PanelButton pauseButton = new PanelButton("Pause",
                 pApplet,
                 10,
-                panelTop + 30,
+                panelTop + 20,
                 buttonWidth,
                 buttonHeight);
         pauseButton.draw();
@@ -120,7 +135,7 @@ public class ClientMain extends PApplet {
         PanelButton playButton = new PanelButton("Play",
                 pApplet,
                 110,
-                panelTop + 30,
+                panelTop + 20,
                 buttonWidth,
                 buttonHeight);
         playButton.draw();
@@ -128,7 +143,7 @@ public class ClientMain extends PApplet {
         PanelButton startRecordButton = new PanelButton("Start Record",
                 pApplet,
                 210,
-                panelTop + 30,
+                panelTop + 20,
                 buttonWidth,
                 buttonHeight);
         startRecordButton.draw();
@@ -136,7 +151,7 @@ public class ClientMain extends PApplet {
         PanelButton stopRecordButton = new PanelButton("stop Record",
                 pApplet,
                 310,
-                panelTop + 30,
+                panelTop + 20,
                 buttonWidth,
                 buttonHeight);
         stopRecordButton.draw();
@@ -144,12 +159,52 @@ public class ClientMain extends PApplet {
         PanelButton replayButton = new PanelButton("Replay",
                 pApplet,
                 410,
-                panelTop + 30,
+                panelTop + 20,
                 buttonWidth,
                 buttonHeight);
         replayButton.draw();
-        
-        
+
+        //speed buttons
+        PanelButton speedButton1 = new PanelButton("0.25x",
+                pApplet,
+                10,
+                panelTop + 60,
+                buttonWidth,
+                buttonHeight);
+        speedButton1.draw();
+
+        PanelButton speedButton2 = new PanelButton("0.50x",
+                pApplet,
+                110,
+                panelTop + 60,
+                buttonWidth,
+                buttonHeight);
+        speedButton2.draw();
+
+        PanelButton speedButton3 = new PanelButton("1.00x",
+                pApplet,
+                210,
+                panelTop + 60,
+                buttonWidth,
+                buttonHeight);
+        speedButton3.draw();
+
+        PanelButton speedButton4 = new PanelButton("1.50x",
+                pApplet,
+                310,
+                panelTop + 60,
+                buttonWidth,
+                buttonHeight);
+        speedButton4.draw();
+
+        PanelButton speedButton5 = new PanelButton("2.00x",
+                pApplet,
+                410,
+                panelTop + 60,
+                buttonWidth,
+                buttonHeight);
+        speedButton5.draw();
+
 
         if (pauseButton.isMouseOver(mouseX,mouseY)){
             mouseOver = UniversalConstants.BUTTON_PAUSE;
@@ -161,6 +216,16 @@ public class ClientMain extends PApplet {
             mouseOver = UniversalConstants.BUTTON_RECORD_STOP;
         } else if (replayButton.isMouseOver(mouseX,mouseY)){
             mouseOver = UniversalConstants.BUTTON_REPLAY;
+        } else if (speedButton1.isMouseOver(mouseX,mouseY)){
+            mouseOver = UniversalConstants.BUTTON_SPEED_01;
+        } else if (speedButton2.isMouseOver(mouseX,mouseY)){
+            mouseOver = UniversalConstants.BUTTON_SPEED_02;
+        } else if (speedButton3.isMouseOver(mouseX,mouseY)){
+            mouseOver = UniversalConstants.BUTTON_SPEED_03;
+        } else if (speedButton4.isMouseOver(mouseX,mouseY)){
+            mouseOver = UniversalConstants.BUTTON_SPEED_04;
+        } else if (speedButton5.isMouseOver(mouseX,mouseY)){
+            mouseOver = UniversalConstants.BUTTON_SPEED_05;
         } else {
             mouseOver = UniversalConstants.BUTTON_NONE;
         }

@@ -164,8 +164,22 @@ public class GameStateManager {
                 Timeline.setServerGameTimeTicks(gameRecording.getRecordingStartTime());
                 Timeline.setSpeed(1);
             }
+        } else if (UniversalConstants.BUTTON_SPEED_01 == panelEvent.getEventType()){
+            changeSpeed(0.25);
+        } else if (UniversalConstants.BUTTON_SPEED_02 == panelEvent.getEventType()){
+            changeSpeed(0.5);
+        } else if (UniversalConstants.BUTTON_SPEED_03 == panelEvent.getEventType()){
+            changeSpeed(1);
+        } else if (UniversalConstants.BUTTON_SPEED_04 == panelEvent.getEventType()){
+            changeSpeed(1.5);
+        } else if (UniversalConstants.BUTTON_SPEED_05 == panelEvent.getEventType()){
+            changeSpeed(2);
         }
         eventsManager.resetPanelEvent();
+    }
+
+    private void changeSpeed(double speed) {
+        Timeline.setSpeed((float) speed);
     }
 
     private void handleKeyboardEvents() {

@@ -29,4 +29,11 @@ public class UniversalConstants {
     public static final int BUTTON_RECORD_START = 942;
     public static final int BUTTON_RECORD_STOP = 499;
     public static final int BUTTON_REPLAY = 854;
+
+    public static final int BUTTON_SPEED_01 = 324;
+    public static final int BUTTON_SPEED_02 = 116;
+    public static final int BUTTON_SPEED_03 = 46;
+    public static final int BUTTON_SPEED_04 = 657;
+    public static final int BUTTON_SPEED_05 = 839;
+
 }
