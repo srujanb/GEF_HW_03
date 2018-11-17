@@ -50,6 +50,11 @@ public class GameStateManager {
     public void calculateNextState(Boolean justHandleEvents) {
         if (null == currentGameState) return;
 
+        if (gameRecording != null && gameRecording.getCurrentState() == GameRecording.REPLAYING && Timeline.getServerGameTimeTicks() >= gameRecording.getRecordingStopTime()){
+            gameRecording.setCurrentState(GameRecording.STOPPED);
+            Timeline.setSpeed(0);
+        }
+
         if (gameRecording != null && gameRecording.hasGameState(Timeline.getServerGameTimeTicks())){
             try {
                 currentGameState = (GameState) gameRecording.getGameState(Timeline.getServerGameTimeTicks()).clone();
@@ -134,7 +139,7 @@ public class GameStateManager {
         if (UniversalConstants.BUTTON_PAUSE == panelEvent.getEventType()){
             Timeline.setSpeed((float) 0);
         } else if (UniversalConstants.BUTTON_PLAY == panelEvent.getEventType()){
-            gameRecording = null;
+            if (gameRecording.getCurrentState() == GameRecording.STOPPED) gameRecording = null;
             Timeline.setSpeed(1);
         } else if (UniversalConstants.BUTTON_RECORD_START == panelEvent.getEventType()){
             if (gameRecording == null) {

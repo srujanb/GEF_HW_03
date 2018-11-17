@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3458271c-8687-41f4-b4b9-30f5ba856111" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Models/ClientCharacter.java" afterPath="$PROJECT_DIR$/src/Models/ClientCharacter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Models/Platform.java" afterPath="$PROJECT_DIR$/src/Models/Platform.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ServerSpecific/ServerMain.java" afterPath="$PROJECT_DIR$/src/ServerSpecific/ServerMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ServerSpecific/Managers/GameStateManager.java" afterPath="$PROJECT_DIR$/src/ServerSpecific/Managers/GameStateManager.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,7 +28,7 @@
       <file leaf-file-name="GameInstance.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ServerSpecific/GameInstance.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-941">
+            <state relative-caret-position="-236">
               <caret line="64" column="5" lean-forward="false" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
               <folding>
                 <element signature="e#4939#4940#0" expanded="true" />
@@ -51,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameStateManager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameStateManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ServerSpecific/Managers/GameStateManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1572">
-              <caret line="95" column="36" lean-forward="false" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="36" />
+            <state relative-caret-position="384">
+              <caret line="52" column="95" lean-forward="false" selection-start-line="52" selection-start-column="95" selection-end-line="52" selection-end-column="95" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#696#697#0" expanded="true" />
@@ -82,7 +81,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Platform.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Platform.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Models/Platform.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1729">
@@ -191,9 +190,9 @@
       <find>pause</find>
       <find>posX</find>
       <find>ifappl</find>
-      <find>return</find>
-      <find>ifapp</find>
       <find>pappl</find>
+      <find>ifapp</find>
+      <find>return</find>
     </findStrings>
     <replaceStrings>
       <replace>stop</replace>
@@ -245,11 +244,11 @@
         <option value="$PROJECT_DIR$/src/ServerSpecific/GameInstance.java" />
         <option value="$PROJECT_DIR$/src/ServerSpecific/Timeline.java" />
         <option value="$PROJECT_DIR$/src/Models/GameRecording.java" />
-        <option value="$PROJECT_DIR$/src/ServerSpecific/Managers/GameStateManager.java" />
         <option value="$PROJECT_DIR$/src/Models/GameState.java" />
         <option value="$PROJECT_DIR$/src/ServerSpecific/ServerMain.java" />
         <option value="$PROJECT_DIR$/src/Models/ClientCharacter.java" />
         <option value="$PROJECT_DIR$/src/Models/Platform.java" />
+        <option value="$PROJECT_DIR$/src/ServerSpecific/Managers/GameStateManager.java" />
       </list>
     </option>
   </component>
@@ -259,7 +258,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="x" value="-116" />
     <option name="y" value="-1200" />
     <option name="width" value="1920" />
@@ -414,7 +413,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Multirun.Server+Client">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="ClientSpecific.ClientMain" />
@@ -549,15 +548,15 @@
       <updated>1541828995473</updated>
       <workItem from="1541828996766" duration="113253000" />
       <workItem from="1542338931308" duration="10926000" />
-      <workItem from="1542378945005" duration="34028000" />
+      <workItem from="1542378945005" duration="35952000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158207000" />
+    <option name="totallyTimeSpent" value="160131000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-116" y="-1200" width="1920" height="1200" extended-state="0" />
+    <frame x="-116" y="-1200" width="1920" height="1200" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1042,19 +1041,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ServerSpecific/GameInstance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-941">
-          <caret line="64" column="5" lean-forward="false" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
-          <folding>
-            <element signature="e#4939#4940#0" expanded="true" />
-            <element signature="e#5008#5009#0" expanded="true" />
-            <element signature="e#5046#5047#0" expanded="true" />
-            <element signature="e#5097#5098#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ServerSpecific/Managers/EventsManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -1072,20 +1058,6 @@
             <element signature="e#1658#1659#0" expanded="true" />
             <element signature="e#1717#1718#0" expanded="true" />
             <element signature="e#1759#1760#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ServerSpecific/Managers/GameStateManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1572">
-          <caret line="95" column="36" lean-forward="false" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#696#697#0" expanded="true" />
-            <element signature="e#735#736#0" expanded="true" />
-            <element signature="e#1268#1269#0" expanded="true" />
-            <element signature="e#1306#1307#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1157,6 +1129,33 @@
           <caret line="131" column="46" lean-forward="false" selection-start-line="131" selection-start-column="46" selection-end-line="131" selection-end-column="46" />
           <folding>
             <element signature="e#1250#1276#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ServerSpecific/GameInstance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-236">
+          <caret line="64" column="5" lean-forward="false" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
+          <folding>
+            <element signature="e#4939#4940#0" expanded="true" />
+            <element signature="e#5008#5009#0" expanded="true" />
+            <element signature="e#5046#5047#0" expanded="true" />
+            <element signature="e#5097#5098#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ServerSpecific/Managers/GameStateManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="52" column="95" lean-forward="false" selection-start-line="52" selection-start-column="95" selection-end-line="52" selection-end-column="95" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#696#697#0" expanded="true" />
+            <element signature="e#735#736#0" expanded="true" />
+            <element signature="e#1268#1269#0" expanded="true" />
+            <element signature="e#1306#1307#0" expanded="true" />
           </folding>
         </state>
       </provider>
