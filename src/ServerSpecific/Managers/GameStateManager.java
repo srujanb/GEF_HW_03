@@ -62,7 +62,8 @@ public class GameStateManager {
         if (gameRecording != null && gameRecording.hasGameState(Timeline.getServerGameTimeTicks())){
             try {
                 currentGameState = (GameState) gameRecording.getGameState(Timeline.getServerGameTimeTicks()).clone();
-                printTempGameInfo();
+                sendScoreToClients();
+//                printTempGameInfo();
             } catch (CloneNotSupportedException e) {
                 e.printStackTrace();
             }
@@ -129,6 +130,13 @@ public class GameStateManager {
         }
     }
 
+    private void sendScoreToClients() {
+        ArrayList<ClientCharacter> clientCharacters = currentGameState.getClientCharacters();
+        for (ClientCharacter clientCharacter: clientCharacters){
+            sendScoreToClientWithCharacter(clientCharacter);
+        }
+    }
+
     private void sendScoreToClientWithCharacter(ClientCharacter clientCharacter) {
         long clientGUID = clientCharacter.getClientGUID();
         Client client = clientMap.get(clientGUID);
@@ -139,19 +147,19 @@ public class GameStateManager {
         }
     }
 
-    private void printTempGameInfo() {
-        System.out.println("GameStateManager: currentGameState time: " + Timeline.getServerGameTimeTicks() + " , " + currentGameState.getGameTime() );
-        System.out.println("GameStateManager: Char PosX" + currentGameState.getClientCharacters().get(0).getPosX());
-    }
-
-    private void printTempHashmapInfo() {
-        System.out.println("GameStateManager: Printing all game states");
-        HashMap<Long,GameState> mymap = gameRecording.getGameStateMap();
-        for (Long key: mymap.keySet()){
-            GameState gameState = mymap.get(key);
-            System.out.println("vX: " + gameState.getClientCharacters().get(0).getPosX());
-        }
-    }
+//    private void printTempGameInfo() {
+//        System.out.println("GameStateManager: currentGameState time: " + Timeline.getServerGameTimeTicks() + " , " + currentGameState.getGameTime() );
+//        System.out.println("GameStateManager: Char PosX" + currentGameState.getClientCharacters().get(0).getPosX());
+//    }
+//
+//    private void printTempHashmapInfo() {
+//        System.out.println("GameStateManager: Printing all game states");
+//        HashMap<Long,GameState> mymap = gameRecording.getGameStateMap();
+//        for (Long key: mymap.keySet()){
+//            GameState gameState = mymap.get(key);
+//            System.out.println("vX: " + gameState.getClientCharacters().get(0).getPosX());
+//        }
+//    }
 
     public void handlePanelEvents() {
         PanelEvent panelEvent = eventsManager.getPanelEvent();
@@ -175,7 +183,7 @@ public class GameStateManager {
                 gameRecording.setRecordingStopTime(Timeline.getServerGameTimeTicks());
                 recordCurrentGameStateIfApplicable();
                 Timeline.setSpeed(0);
-                printTempHashmapInfo();
+//                printTempHashmapInfo();
             }
         } else if (UniversalConstants.BUTTON_REPLAY == panelEvent.getEventType()){
             System.out.println("GameStateManager replay called");
@@ -230,7 +238,7 @@ public class GameStateManager {
                 System.out.println("recording now..");
                 try {
                     gameRecording.addGameState(Timeline.getServerGameTimeTicks(), (GameState) currentGameState.clone());
-                    printTempGameInfo();
+//                    printTempGameInfo();
                 } catch (CloneNotSupportedException e) {
                     e.printStackTrace();
                 }
