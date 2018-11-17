@@ -2,6 +2,7 @@ package Models;
 
 import Interfaces.Collidable;
 import Interfaces.ProcRenderable;
+import ServerSpecific.ServerMain;
 import Utils.UniversalConstants;
 import processing.core.PApplet;
 
@@ -128,6 +129,7 @@ public class Platform extends GeneralShape implements Serializable, ProcRenderab
             pApplet.fill(clr[0],clr[1],clr[2]);
             pApplet.rect(posX, posY, w, h);
         } else {
+            pApplet = ServerMain.getPapplet();
             System.out.println("papplet is null");
         }
     }

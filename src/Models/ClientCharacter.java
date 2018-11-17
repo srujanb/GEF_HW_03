@@ -2,7 +2,9 @@ package Models;
 
 import Interfaces.Collidable;
 import Interfaces.ProcRenderable;
+import ServerSpecific.ServerMain;
 import Utils.UniversalConstants;
+import com.sun.security.ntlm.Server;
 import processing.core.PApplet;
 import java.io.Serializable;
 
@@ -80,6 +82,7 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
             pApplet.fill(clr[0],clr[1],clr[2]);
             pApplet.rect(posX, posY, w, h, 7);
         } else {
+            pApplet = ServerMain.getPapplet();
             System.out.println("papplet is null");
         }
     }

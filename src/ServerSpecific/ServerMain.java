@@ -48,6 +48,10 @@ public class ServerMain extends PApplet{
         }
     }
 
+    public static PApplet getPapplet(){
+        return currentPappletInstance;
+    }
+
     private static void initServer() throws IOException {
         serverSocket = new ServerSocket(PORT);
         gameInstance = new GameInstance(currentPappletInstance);
