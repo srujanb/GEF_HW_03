@@ -1,7 +1,6 @@
 package Models;
 
 import com.google.gson.Gson;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,6 +12,8 @@ public class GameState implements Serializable,Cloneable{
     private long gameTime;
     private HashMap<Long,Platform> platforms;
     private HashMap<Long,ClientCharacter> clientCharacters = new HashMap<>();
+    private FoodItem foodItem;
+    private Score scoreView;
     private boolean hasUpdates = false;
 
     public ArrayList<Platform> getPlatforms() {
@@ -53,6 +54,14 @@ public class GameState implements Serializable,Cloneable{
         this.gameTime = gameTime;
     }
 
+    public FoodItem getFoodItem() {
+        return foodItem;
+    }
+
+    public void setFoodItem(FoodItem foodItem) {
+        this.foodItem = foodItem;
+    }
+
     public void updatePlatform(Platform platform){
         platforms.put(platform.getGUID(),platform);
     }
@@ -62,7 +71,11 @@ public class GameState implements Serializable,Cloneable{
     }
 
     public void characterJump(long GUID){
-        clientCharacters.get(GUID).jump();
+        try {
+            clientCharacters.get(GUID).jump();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void characterLeft(long GUID){
@@ -88,5 +101,17 @@ public class GameState implements Serializable,Cloneable{
         Gson gson = new Gson();
         GameState gameState = gson.fromJson(gson.toJson(this), GameState.class);
         return gameState;
+    }
+
+    public Score getScoreView() {
+        return scoreView;
+    }
+
+    public void setScoreView(Score scoreView) {
+        this.scoreView = scoreView;
+    }
+
+    public void setScore(int score) {
+        this.scoreView.setScore(score);
     }
 }

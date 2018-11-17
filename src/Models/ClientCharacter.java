@@ -67,6 +67,14 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
         this.pApplet = pApplet;
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public long getClientGUID() {
         return clientGUID;
     }
@@ -181,5 +189,9 @@ public class ClientCharacter extends GeneralShape implements Serializable, ProcR
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    public void ateFood() {
+        score += 5;
     }
 }

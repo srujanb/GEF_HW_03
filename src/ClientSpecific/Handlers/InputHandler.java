@@ -4,6 +4,7 @@ import ClientSpecific.Managers.GameStateManager;
 import ClientSpecific.Timeline;
 import Events.GameTimeNotificationEvent;
 import Events.GameStateUpdateEvent;
+import Events.ScoreUpdateEvent;
 import Models.GameState;
 import Utils.ObjectUtil;
 
@@ -42,6 +43,9 @@ public class InputHandler implements Runnable {
                     Timeline.setLatestServerGameTime(gameTimeNotificationEvent.getGameTime());
                 } else if (obj instanceof GameState){
                     gameStateManager.setCurrentGameState((GameState) obj);
+                } else if (obj instanceof ScoreUpdateEvent){
+                    System.out.println("Got score update event");
+                    gameStateManager.setScore(((ScoreUpdateEvent) obj).getNewScore());
                 }
             } catch (Exception e){
                 //TODO remove this later.

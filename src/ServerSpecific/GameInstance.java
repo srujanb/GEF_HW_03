@@ -34,10 +34,22 @@ public class GameInstance extends GameObject implements Runnable {
         eventsManager = new EventsManager();
         GameState gameState = new GameState();
         initPlatforms(gameState);
+        initFood(gameState);
+        initScore(gameState);
         gameStateManager = new GameStateManager(currentPappletInstance);
         gameStateManager.setCurrentGameState(gameState);
         gameStateManager.setEventsManager(eventsManager);
         System.out.println("GameInstance started with GUID: " + GUID);
+    }
+
+    private void initScore(GameState gameState) {
+        Score score = new Score(currentPappletInstance);
+        gameState.setScoreView(score);
+    }
+
+    private void initFood(GameState gameState) {
+        FoodItem foodItem = new FoodItem(currentPappletInstance);
+        gameState.setFoodItem(foodItem);
     }
 
     @Override
@@ -109,7 +121,7 @@ public class GameInstance extends GameObject implements Runnable {
     private void generateCharacterForClient(Client client) {
         ClientCharacter clientCharacter = new ClientCharacter(currentPappletInstance,250,50);
         clientCharacter.setClientGUID(client.getGUID());
-        gameStateManager.addClientToGame(clientCharacter);
+        gameStateManager.addClientToGame(client, clientCharacter);
     }
 
     private void sendInitialGameStateToClient(Client client) {

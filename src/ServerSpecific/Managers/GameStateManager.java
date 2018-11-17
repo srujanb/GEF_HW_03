@@ -2,14 +2,17 @@ package ServerSpecific.Managers;
 
 import Events.KeyboardEvent;
 import Events.PanelEvent;
+import Events.ScoreUpdateEvent;
 import Models.ClientCharacter;
 import Models.GameRecording;
 import Models.GameState;
 import Models.Platform;
+import ServerSpecific.Models.Client;
 import ServerSpecific.Timeline;
 import Utils.UniversalConstants;
 import processing.core.PApplet;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -20,6 +23,7 @@ public class GameStateManager {
     private PApplet pApplet;
     private EventsManager eventsManager;
     private GameRecording gameRecording;
+    private HashMap<Long,Client> clientMap = new HashMap<>();
 
     public GameStateManager(PApplet pApplet) {
         this.pApplet = pApplet;
@@ -112,10 +116,26 @@ public class GameStateManager {
                 if (clientCharacter.getUpperBound() > UniversalConstants.GAMESCREEN_HEIGHT){
                     currentGameState.setHasUpdates(true);
                     clientCharacter.respawn();
+                    sendScoreToClientWithCharacter(clientCharacter);
+                }
+                if (clientCharacter.isCollidingWith(currentGameState.getFoodItem())){
+                    currentGameState.getFoodItem().respawn();
+                    clientCharacter.ateFood();
+                    sendScoreToClientWithCharacter(clientCharacter);
                 }
                 //add in the previousClientCharactersList
                 previousClientCharacter.add(clientCharacter);
             }
+        }
+    }
+
+    private void sendScoreToClientWithCharacter(ClientCharacter clientCharacter) {
+        long clientGUID = clientCharacter.getClientGUID();
+        Client client = clientMap.get(clientGUID);
+        try {
+            client.sendObject(new ScoreUpdateEvent(clientCharacter.getScore()));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -236,9 +256,12 @@ public class GameStateManager {
                 clientCharacter.draw();
             }
         }
+
+        currentGameState.getFoodItem().draw();
     }
 
-    public void addClientToGame(ClientCharacter clientCharacter) {
+    public void addClientToGame(Client client, ClientCharacter clientCharacter) {
+        clientMap.put(client.getGUID(),client);
         clientCharacter.setpApplet(pApplet);
         currentGameState.addClient(clientCharacter);
         currentGameState.setHasUpdates(true);

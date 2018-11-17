@@ -14,6 +14,8 @@ public class GameStateManager {
     private GameState currentGameState;
     private PApplet pApplet;
 
+    private int myScore;
+
     public GameStateManager(PApplet pApplet) {
         this.pApplet = pApplet;
     }
@@ -44,6 +46,10 @@ public class GameStateManager {
             }
         }
 
+        currentGameState.getFoodItem().setpApplet(pApplet);
+        currentGameState.getScoreView().setpApplet(pApplet);
+        currentGameState.getScoreView().setScore(myScore);
+
 
         this.currentGameState = currentGameState;
     }
@@ -64,6 +70,9 @@ public class GameStateManager {
                 clientCharacter.draw();
             }
         }
+
+        currentGameState.getFoodItem().draw();
+        currentGameState.getScoreView().draw();
     }
 
     public void updatePartialGameState(GameObjectUpdateEvent obj) {
@@ -132,4 +141,8 @@ public class GameStateManager {
 
     }
 
+    public void setScore(int score) {
+        myScore = score;
+        currentGameState.setScore(score);
+    }
 }

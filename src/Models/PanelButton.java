@@ -22,6 +22,7 @@ public class PanelButton {
     }
 
     public void draw() {
+        pApplet.textSize(12);
         pApplet.fill(218);
         pApplet.rect(x, y, w, h, 10);
         pApplet.textAlign(pApplet.CENTER, pApplet.CENTER);
