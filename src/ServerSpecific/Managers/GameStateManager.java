@@ -139,7 +139,8 @@ public class GameStateManager {
         if (UniversalConstants.BUTTON_PAUSE == panelEvent.getEventType()){
             Timeline.setSpeed((float) 0);
         } else if (UniversalConstants.BUTTON_PLAY == panelEvent.getEventType()){
-            if (gameRecording.getCurrentState() == GameRecording.STOPPED) gameRecording = null;
+            System.out.println("GameStateManager PLAY CALLED");
+            if (gameRecording != null && gameRecording.getCurrentState() == GameRecording.STOPPED) gameRecording = null;
             Timeline.setSpeed(1);
         } else if (UniversalConstants.BUTTON_RECORD_START == panelEvent.getEventType()){
             if (gameRecording == null) {
@@ -179,6 +180,7 @@ public class GameStateManager {
     }
 
     private void changeSpeed(double speed) {
+        if (gameRecording == null) return;
         Timeline.setSpeed((float) speed);
     }
 
