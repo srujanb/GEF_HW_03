@@ -1,5 +1,6 @@
 package Models;
 
+import com.google.gson.Gson;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.io.Serializable;
@@ -84,22 +85,8 @@ public class GameState implements Serializable,Cloneable{
 
     public Object clone() throws CloneNotSupportedException {
 //        return super.clone();
-        GameState gameState = null;
-        try {
-            gameState = (GameState) super.clone();
-            if (platforms != null){
-                for (Long key: platforms.keySet()){
-                    gameState.platforms.put(key, (Platform) platforms.get(key).clone());
-                }
-            }
-            if (clientCharacters != null){
-                for (Long key: clientCharacters.keySet()){
-                    gameState.clientCharacters.put(key, (ClientCharacter) clientCharacters.get(key).clone());
-                }
-            }
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
+        Gson gson = new Gson();
+        GameState gameState = gson.fromJson(gson.toJson(this), GameState.class);
         return gameState;
     }
 }
