@@ -28,11 +28,16 @@ public class InputHandler implements Runnable {
     @Override
     public void run() {
         if (dIn != null) {
-            listenToInputs();
+            try {
+                listenToInputs();
+            } catch (IOException e) {
+                e.printStackTrace();
+                client.getGameInstance().removeClient(client);
+            }
         }
     }
 
-    private void listenToInputs() {
+    private void listenToInputs() throws IOException {
         while (true) {
             try {
                 String string = dIn.readUTF();
@@ -46,8 +51,6 @@ public class InputHandler implements Runnable {
                 } else if (object instanceof PanelEvent) {
                     handlePanelEvent((PanelEvent) object);
                 }
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
             } catch (ClassNotFoundException classNotFoundException) {
                 classNotFoundException.printStackTrace();
             }

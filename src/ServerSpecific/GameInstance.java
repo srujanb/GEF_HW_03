@@ -149,6 +149,7 @@ public class GameInstance extends GameObject implements Runnable {
 
     public void removeClient(long GUID) {
         clients.remove(GUID);
+        gameStateManager.removeClientCharacter(GUID);
     }
 
     public void removeClient(Client client) {

@@ -278,4 +278,8 @@ public class GameStateManager {
     public void setEventsManager(EventsManager eventsManager) {
         this.eventsManager = eventsManager;
     }
+
+    public void removeClientCharacter(long clientGUID) {
+        currentGameState.removeCharacterWithClientGUID(clientGUID);
+    }
 }

@@ -114,4 +114,9 @@ public class GameState implements Serializable,Cloneable{
     public void setScore(int score) {
         this.scoreView.setScore(score);
     }
+
+    public void removeCharacterWithClientGUID(long clientGUID) {
+        hasUpdates = true;
+        clientCharacters.remove(clientGUID);
+    }
 }
